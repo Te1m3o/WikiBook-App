@@ -1,0 +1,101 @@
+<mediawiki xmlns="http://www.mediawiki.org/xml/export-0.10/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd" version="0.10" xml:lang="de">
+  <siteinfo>
+    <sitename>Wikibooks</sitename>
+    <dbname>dewikibooks</dbname>
+    <base>https://de.wikibooks.org/wiki/Hauptseite</base>
+    <generator>MediaWiki 1.36.0-wmf.25</generator>
+    <case>first-letter</case>
+    <namespaces>
+      <namespace key="-2" case="first-letter">Medium</namespace>
+      <namespace key="-1" case="first-letter">Spezial</namespace>
+      <namespace key="0" case="first-letter" />
+      <namespace key="1" case="first-letter">Diskussion</namespace>
+      <namespace key="2" case="first-letter">Benutzer</namespace>
+      <namespace key="3" case="first-letter">Benutzer Diskussion</namespace>
+      <namespace key="4" case="first-letter">Wikibooks</namespace>
+      <namespace key="5" case="first-letter">Wikibooks Diskussion</namespace>
+      <namespace key="6" case="first-letter">Datei</namespace>
+      <namespace key="7" case="first-letter">Datei Diskussion</namespace>
+      <namespace key="8" case="first-letter">MediaWiki</namespace>
+      <namespace key="9" case="first-letter">MediaWiki Diskussion</namespace>
+      <namespace key="10" case="first-letter">Vorlage</namespace>
+      <namespace key="11" case="first-letter">Vorlage Diskussion</namespace>
+      <namespace key="12" case="first-letter">Hilfe</namespace>
+      <namespace key="13" case="first-letter">Hilfe Diskussion</namespace>
+      <namespace key="14" case="first-letter">Kategorie</namespace>
+      <namespace key="15" case="first-letter">Kategorie Diskussion</namespace>
+      <namespace key="102" case="first-letter">Regal</namespace>
+      <namespace key="103" case="first-letter">Regal Diskussion</namespace>
+      <namespace key="828" case="first-letter">Modul</namespace>
+      <namespace key="829" case="first-letter">Modul Diskussion</namespace>
+      <namespace key="2300" case="first-letter">Gadget</namespace>
+      <namespace key="2301" case="first-letter">Gadget Diskussion</namespace>
+      <namespace key="2302" case="case-sensitive">Gadget-Definition</namespace>
+      <namespace key="2303" case="case-sensitive">Gadget-Definition Diskussion</namespace>
+    </namespaces>
+  </siteinfo>
+  <page>
+    <title>Bridge</title>
+    <ns>0</ns>
+    <id>28496</id>
+    <revision>
+      <id>721274</id>
+      <parentid>719780</parentid>
+      <timestamp>2014-10-31T09:41:04Z</timestamp>
+      <contributor>
+        <username>Qwertz84</username>
+        <id>53791</id>
+      </contributor>
+      <minor/>
+      <comment>-BK</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="2194" xml:space="preserve">{{Infoleiste|Spiele|Freizeit|L}}
+
+&lt;div&gt;
+{|width="360px" border="1" cellpadding="10" cellspacing="0" style="margin:0.5em;border-collapse:collapse; border-style:1px solid; border-color:#666666; background-color:#CCCCCC; font-size:100%; color:#191919;" align="right"
+|-
+|
+[[Image:Info_icon.png|right]]&lt;div style="font-size:140%;color:#FFFFFF;margin-bottom:1em;"&gt;'''Buchinfo'''&lt;/div&gt;
+
+&lt;div style="font-size:100%"&gt;
+'''Inhalt:''' Wissenswertes über das Kartenspiel und erste Schritte&lt;/br&gt;
+'''Zielgruppe:''' Leser, die ihr Allgemeinwissen verbessern wollen; Spieler, die ein neues Kartenspiel kennenlernen wollen&lt;/br&gt;
+'''Projektbeschreibung:''' [[Diskussion:Bridge|siehe hier]]&lt;/br&gt;
+&lt;/div&gt;
+|}
+&lt;/div&gt;
+----
+'''Baustelle!'''
+Die Fertigstellung des Buches wird noch einige Zeit in Anspruch nehmen!
+
+----
+&lt;/br&gt;Bridge ist das spannendste Kartenspiel der Welt! Es ist leicht zu erlernen, jedoch braucht es seine Zeit, um gut zu spielen. Es bringt viel Spaß und ist eine große Herausforderung. Im Gegensatz zu anderen Spielen dauert ein Spiel nur ca. 5-10 Minuten. Das gute Gefühl einer perfekt gespielten Bridge-Hand kann jedoch Jahre überdauern. 
+
+::'''Informieren Sie sich über das Spiel!'''
+
+*'''Band 1: Ein Kartenspiel mit vielen Gesichtern'''
+::Der erste Band soll dabei helfen, das Spiel in all seinen Facetten vorzustellen. Es wird auf die Entwicklung und die heutige Bedeutung des Spiels eingegangen. 
+
+*'''Band 2: Das Spiel - erste Schritte'''
+::Die Spielregeln werden erst im zweiten Band erläutert. Kapitel wie „Bridge in 10 Minuten“ dürfen jedoch nicht darüber hinwegtäuschen, dass Bridge seine Faszination durch seine Vielseitigkeit erlangt. Obwohl weltweit nach gleichen Regeln gespielt wird, sind die Möglichkeiten innerhalb des Spiels nahezu grenzenlos. Ein Abend wird ausreichen um eine Übersicht über das Spiel zu bekommen, aber keinesfalls genügen, um das Spiel zu beherrschen.
+
+
+
+[[Bridge: Inhalt|Eingang zur Schreibstube]]
+
+__NOTOC__
+
+
+[[Kategorie:Buch]]
+
+{{todo|gegebenenfalls mit der Seite [[Kartenspiele: Bridge]] abgleichen oder sogar ineinander überführen.|Spiele}}
+
+[[en:Bridge]]
+[[he:ברידג']]
+[[ja:コントラクトブリッジ]]
+[[sv:Lärobok i bridge]]</text>
+      <sha1>7kgezb7q1bldi9f6gmxn8n9lsriv8f1</sha1>
+    </revision>
+  </page>
+</mediawiki>
