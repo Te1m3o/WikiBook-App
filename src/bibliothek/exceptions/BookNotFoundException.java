@@ -1,4 +1,4 @@
-package sample.bibliothek;
+package bibliothek.exceptions;
 
 public class BookNotFoundException extends Exception {
   public BookNotFoundException(String message){

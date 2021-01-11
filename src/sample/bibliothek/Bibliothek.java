@@ -6,6 +6,7 @@
  */
 package sample.bibliothek;
 
+import bibliothek.exceptions.BookNotFoundException;
 import java.io.IOException;
 import org.xml.sax.SAXException;
 
@@ -13,7 +14,7 @@ import org.xml.sax.SAXException;
  * The main class of the program
  */
 public class Bibliothek {
-  public static void main(String[] args) throws IOException, SAXException {
+  public static void main(String[] args) throws IOException, SAXException, BookNotFoundException {
     Zettelkasten zettelkasten = new Zettelkasten();
     zettelkasten.addMedium(
         new Buch(
