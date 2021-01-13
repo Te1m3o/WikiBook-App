@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 import javafx.collections.FXCollections;
@@ -30,16 +32,23 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 import sample.bibliothek.*;
+
+/**
+ * Fehler abfangen, falls Synonim nicht gefunden ist
+ *
+ */
 public class Controller implements Initializable {
   @FXML
   public WebView webView;
   public TextField bookTitle;
   public Label lastEditor;
   public Label lastEdition;
-  public TextArea addedItems;
+  public ListView zListView;
   public ChoiceBox sort;
   public ListView synonymView;
   ObservableList<String>sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
+  ObservableList<String> zettelkastenItems =FXCollections.observableArrayList();
+  ObservableList<String> synonymItems =FXCollections.observableArrayList();
   ActionEvent buttonEvent;
   public WebEngine engine;
   Zettelkasten myZettelkasten = new Zettelkasten();
@@ -77,25 +86,43 @@ public class Controller implements Initializable {
     }
   }
 
+  /**
+   * Adds the WikiBook to the Zettelkasten and displays it on the LisView
+   * @param _actionEvent
+   * @throws IOException
+   * @throws SAXException
+   * @throws BookNotFoundException
+   */
   public void addMedium(ActionEvent _actionEvent)
       throws IOException, SAXException, BookNotFoundException {
     Wikibook wikiBookMedium;
     String title = bookTitle.getText().replace(" ", "_");
     wikiBookMedium= (Wikibook) myZettelkasten.findWikiBook(title);
     myZettelkasten.addMedium(wikiBookMedium);
-    addedItems.appendText(
-        myZettelkasten.getMyZettelkasten().get(myZettelkasten.getMyZettelkasten().size()-1).getTitel() + "\n");
+    zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(myZettelkasten.getMyZettelkasten().size()-1).getTitel());
+    zListView.setItems(zettelkastenItems);
+
   }
 
+  /**
+   * Sorts the Zettelkasten Array and displays it sorted on the LisView
+   * @param _actionEvent
+   */
   public void sortArray(ActionEvent _actionEvent) {
     String sortAlgorithm = (String) sort.getValue();
-    addedItems.setText("");
+    zettelkastenItems.clear();
     myZettelkasten.sort(sortAlgorithm);
     for (int i=0; i<myZettelkasten.getMyZettelkasten().size();i++){
-      addedItems.appendText(myZettelkasten.getMyZettelkasten().get(i).getTitel() + "\n");
+      zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(i).getTitel());
     }
+    zListView.setItems(zettelkastenItems);
   }
 
+  /**
+   * Serialises the object of Zettelkasten and saves it in the file 'myZettelkasten'
+   * @param _actionEvent
+   * @throws IOException
+   */
   public void save(ActionEvent _actionEvent) throws IOException {
     BinaryPersisenty dataSaver = new BinaryPersisenty();
     dataSaver.save(myZettelkasten,"myZettelkasten");
@@ -105,22 +132,33 @@ public class Controller implements Initializable {
     alert.showAndWait();
   }
 
+  /**
+   * Deserializes the Object from the file: 'myZettelkasten' and displays it on the ListView
+   * @param _actionEvent
+   * @throws FileNotFoundException
+   */
   public void load(ActionEvent _actionEvent) throws FileNotFoundException {
     BinaryPersisenty dataLoader = new BinaryPersisenty();
     myZettelkasten = dataLoader.load("myZettelkasten");
-    addedItems.setText("");
+    zettelkastenItems.clear();
     for (int i=0; i<myZettelkasten.getMyZettelkasten().size();i++){
-      addedItems.appendText(myZettelkasten.getMyZettelkasten().get(i).getTitel() + "\n");
+      zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(i).getTitel());
     }
+    zListView.setItems(zettelkastenItems);
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setHeaderText("Loaded");
     alert.setContentText("Die zuletzt gespeicherte Zettelkasten ist erfolgreich geladen");
     alert.showAndWait();
   }
-  public void searchSynonym(ActionEvent _actionEvent) throws IOException, ParseException {
-   String suchBegriff=bookTitle.getText();
-    ObservableList<String> items =FXCollections.observableArrayList();
 
+  /**
+   * Searches the synonymous of with the given title and displays the result on the ListView
+   * @param _actionEvent
+   * @throws IOException
+   * @throws ParseException
+   */
+  public void searchSynonym(ActionEvent _actionEvent) throws IOException, ParseException {
+    String suchBegriff = bookTitle.getText();
     String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
     String Corpus = "deu_news_2012_1M";
     String Anfragetyp = "/coocsim/";
@@ -142,9 +180,10 @@ public class Controller implements Initializable {
     for (Object el : jsonResponseArr) {
       wordContainer = (JSONObject) ((JSONObject) el).get("word");
       synonym = (String) wordContainer.get("word");
-      items.add(synonym);
+      synonymItems.add(synonym);
     }
-    synonymView.setItems(items);
+    Collections.sort(synonymItems);
+    synonymView.setItems(synonymItems);
   }
   /**
    * Reads InputStream's contents into String
