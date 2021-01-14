@@ -23,6 +23,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.scene.control.TextField;
@@ -32,26 +33,25 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 import sample.bibliothek.*;
+import sample.exceptions.SynonymNotFound;
 
-/**
- * Fehler abfangen, falls Synonim nicht gefunden ist
- *
- */
+/** Fehler abfangen, falls Synonim nicht gefunden ist */
 public class Controller implements Initializable {
-  @FXML
-  public WebView webView;
+  @FXML public WebView webView;
   public TextField bookTitle;
   public Label lastEditor;
   public Label lastEdition;
   public ListView zListView;
   public ChoiceBox sort;
   public ListView synonymView;
-  ObservableList<String>sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
-  ObservableList<String> zettelkastenItems =FXCollections.observableArrayList();
-  ObservableList<String> synonymItems =FXCollections.observableArrayList();
+  ActionEvent webAction;
+  ObservableList<String> sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
+  ObservableList<String> zettelkastenItems = FXCollections.observableArrayList();
+  ObservableList<String> synonymItems = FXCollections.observableArrayList();
   ActionEvent buttonEvent;
   public WebEngine engine;
   Zettelkasten myZettelkasten = new Zettelkasten();
+
   @Override
   public void initialize(URL _url, ResourceBundle _resourceBundle) {
     sort.setItems(sortWay);
@@ -59,16 +59,20 @@ public class Controller implements Initializable {
     engine = webView.getEngine();
   }
 
-  public void showWebsite(ActionEvent _actionEvent) throws IOException, SAXException, BookNotFoundException {
+  public void showWebsite(ActionEvent _actionEvent)
+      throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
+    webAction=_actionEvent;
     Wikibook wikiBookMedium = null;
     String title = bookTitle.getText().replace(" ", "_");
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
-    try{
-      wikiBookMedium= (Wikibook) myZettelkasten.findWikiBook(title);
-      if (wikiBookMedium==null){
+    searchSynonym();
+    engine.load(link);
+    try {
+      wikiBookMedium = (Wikibook) myZettelkasten.findWikiBook(title);
+      if (wikiBookMedium == null) {
         throw new BookNotFoundException("The book not found, please enter another book");
       }
-    }catch (IOException | BookNotFoundException _e){
+    } catch (IOException | BookNotFoundException _e) {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setHeaderText("BookNotFound Error");
       alert.setContentText(_e.getMessage());
@@ -76,18 +80,18 @@ public class Controller implements Initializable {
     }
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
-    engine.load(link);
   }
 
   public void enterPressed(KeyEvent _keyEvent)
-      throws IOException, SAXException, BookNotFoundException {
-    if (_keyEvent.getCode()== KeyCode.ENTER){
+      throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
+    if (_keyEvent.getCode() == KeyCode.ENTER) {
       showWebsite(buttonEvent);
     }
   }
 
   /**
    * Adds the WikiBook to the Zettelkasten and displays it on the LisView
+   *
    * @param _actionEvent
    * @throws IOException
    * @throws SAXException
@@ -97,22 +101,26 @@ public class Controller implements Initializable {
       throws IOException, SAXException, BookNotFoundException {
     Wikibook wikiBookMedium;
     String title = bookTitle.getText().replace(" ", "_");
-    wikiBookMedium= (Wikibook) myZettelkasten.findWikiBook(title);
+    wikiBookMedium = (Wikibook) myZettelkasten.findWikiBook(title);
     myZettelkasten.addMedium(wikiBookMedium);
-    zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(myZettelkasten.getMyZettelkasten().size()-1).getTitel());
+    zettelkastenItems.add(
+        myZettelkasten
+            .getMyZettelkasten()
+            .get(myZettelkasten.getMyZettelkasten().size() - 1)
+            .getTitel());
     zListView.setItems(zettelkastenItems);
-
   }
 
   /**
    * Sorts the Zettelkasten Array and displays it sorted on the LisView
+   *
    * @param _actionEvent
    */
   public void sortArray(ActionEvent _actionEvent) {
     String sortAlgorithm = (String) sort.getValue();
     zettelkastenItems.clear();
     myZettelkasten.sort(sortAlgorithm);
-    for (int i=0; i<myZettelkasten.getMyZettelkasten().size();i++){
+    for (int i = 0; i < myZettelkasten.getMyZettelkasten().size(); i++) {
       zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(i).getTitel());
     }
     zListView.setItems(zettelkastenItems);
@@ -120,12 +128,13 @@ public class Controller implements Initializable {
 
   /**
    * Serialises the object of Zettelkasten and saves it in the file 'myZettelkasten'
+   *
    * @param _actionEvent
    * @throws IOException
    */
   public void save(ActionEvent _actionEvent) throws IOException {
     BinaryPersisenty dataSaver = new BinaryPersisenty();
-    dataSaver.save(myZettelkasten,"myZettelkasten");
+    dataSaver.save(myZettelkasten, "myZettelkasten");
     Alert alert = new Alert(AlertType.CONFIRMATION);
     alert.setHeaderText("Gespeichert");
     alert.setContentText("Zettelkasten ist mit der Name 'myZettelkasten' erfolgreich gespeichert");
@@ -134,6 +143,7 @@ public class Controller implements Initializable {
 
   /**
    * Deserializes the Object from the file: 'myZettelkasten' and displays it on the ListView
+   *
    * @param _actionEvent
    * @throws FileNotFoundException
    */
@@ -141,7 +151,7 @@ public class Controller implements Initializable {
     BinaryPersisenty dataLoader = new BinaryPersisenty();
     myZettelkasten = dataLoader.load("myZettelkasten");
     zettelkastenItems.clear();
-    for (int i=0; i<myZettelkasten.getMyZettelkasten().size();i++){
+    for (int i = 0; i < myZettelkasten.getMyZettelkasten().size(); i++) {
       zettelkastenItems.add(myZettelkasten.getMyZettelkasten().get(i).getTitel());
     }
     zListView.setItems(zettelkastenItems);
@@ -152,31 +162,108 @@ public class Controller implements Initializable {
   }
 
   /**
-   * Searches the synonymous of with the given title and displays the result on the ListView
-   * @param _actionEvent
+   * Searches the synonymous with the given title and displays the result on the ListView
+   *
    * @throws IOException
    * @throws ParseException
    */
-  public void searchSynonym(ActionEvent _actionEvent) throws IOException, ParseException {
-    String suchBegriff = bookTitle.getText();
+  public void searchSynonym()
+      throws IOException, ParseException, SynonymNotFound, BookNotFoundException, SAXException {
+    String toFind;
+    String selectedItem = (String) synonymView.getSelectionModel().getSelectedItem();
+    if (selectedItem == null) {
+      toFind = bookTitle.getText();
+    } else {
+      synonymItems.clear();
+      toFind = selectedItem;
+      bookTitle.setText(selectedItem);
+      showWebsite(webAction);
+    }
     String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
     String Corpus = "deu_news_2012_1M";
     String Anfragetyp = "/coocsim/";
-    String Suchbegriff = suchBegriff;
     String Parameter = "?minSim=0.1&limit=5";
+    String Suchbegriff = toFind;
+    URL myURL;
+    myURL = new URL(BasisUrl + Corpus + Anfragetyp + Suchbegriff + Parameter);
+    JSONParser jsonParser = new JSONParser();
+    try {
+      String jsonResponse = streamToString(myURL.openStream());
+      // den gelieferten String in ein Array parsen
+      JSONArray jsonResponseArr = (JSONArray) jsonParser.parse(jsonResponse);
+      try {
+        if (jsonResponseArr.size() < 1) {
+          synonymItems.clear();
+          throw new SynonymNotFound();
+        }
+        // das erste Element in diesem Array
+        JSONObject firstEntry = (JSONObject) jsonResponseArr.get(0);
+        // aus dem Element den Container für das Synonym beschaffen
+        JSONObject wordContainer = (JSONObject) firstEntry.get("word");
+        // aus dem Container das Synonym beschaffen
+        String synonym = (String) wordContainer.get("word");
+        // alle abgefragten Synonyme
+        for (Object el : jsonResponseArr) {
+          wordContainer = (JSONObject) ((JSONObject) el).get("word");
+          synonym = (String) wordContainer.get("word");
+          synonymItems.add(synonym);
+        }
+        Collections.sort(synonymItems);
+        synonymView.setItems(synonymItems);
+      } catch (SynonymNotFound err) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setHeaderText("Synonym not found");
+        alert.setContentText(err.getMessage());
+        alert.showAndWait();
+      }
+    } catch (Exception err) {
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setHeaderText("ERROR");
+      alert.setContentText("Fehler beim Zugriff auf den Wortschatzes");
+      alert.showAndWait();
+    }
+  }
+  /**
+   * Reads InputStream's contents into String
+   *
+   * @param is - the InputStream
+   * @return String representing is' contents
+   * @throws IOException
+   */
+  public static String streamToString(InputStream is) throws IOException {
+    String result = "";
+    // other options:
+    // https://stackoverflow.com/questions/309424/read-convertan-inputstream-to-a-string
+    try (Scanner s = new Scanner(is)) {
+      s.useDelimiter("\\A");
+      result = s.hasNext() ? s.next() : "";
+      is.close();
+    }
+    return result;
+  }
+
+  public void searchSynonym(ActionEvent _actionEvent)
+      throws IOException, ParseException, SynonymNotFound, SAXException, BookNotFoundException {
+    String selectedItem = (String) synonymView.getSelectionModel().getSelectedItem();
+    bookTitle.setText(selectedItem);
+    String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
+    String Corpus = "deu_news_2012_1M";
+    String Anfragetyp = "/coocsim/";
+    String Parameter = "?minSim=0.1&limit=5";
+    String Suchbegriff = selectedItem;
     URL myURL;
     myURL = new URL(BasisUrl + Corpus + Anfragetyp + Suchbegriff + Parameter);
     JSONParser jsonParser = new JSONParser();
     String jsonResponse = streamToString(myURL.openStream());
-// den gelieferten String in ein Array parsen
+    // den gelieferten String in ein Array parsen
     JSONArray jsonResponseArr = (JSONArray) jsonParser.parse(jsonResponse);
-// das erste Element in diesem Array
+    // das erste Element in diesem Array
     JSONObject firstEntry = (JSONObject) jsonResponseArr.get(0);
-// aus dem Element den Container für das Synonym beschaffen
+    // aus dem Element den Container für das Synonym beschaffen
     JSONObject wordContainer = (JSONObject) firstEntry.get("word");
-// aus dem Container das Synonym beschaffen
+    // aus dem Container das Synonym beschaffen
     String synonym = (String) wordContainer.get("word");
-// alle abgefragten Synonyme
+    // alle abgefragten Synonyme
     for (Object el : jsonResponseArr) {
       wordContainer = (JSONObject) ((JSONObject) el).get("word");
       synonym = (String) wordContainer.get("word");
@@ -184,21 +271,13 @@ public class Controller implements Initializable {
     }
     Collections.sort(synonymItems);
     synonymView.setItems(synonymItems);
+    showWebsite(webAction);
   }
-  /**
-   * Reads InputStream's contents into String
-   * @param is - the InputStream
-   * @return String representing is' contents
-   * @throws IOException
-   */
-  public static String streamToString(InputStream is) throws IOException {
-    String result = "";
-// other options: https://stackoverflow.com/questions/309424/read-convertan-inputstream-to-a-string
-    try (Scanner s = new Scanner(is)) {
-      s.useDelimiter("\\A");
-      result = s.hasNext() ? s.next() : "";
-      is.close();
+
+  public void mouseClicked(MouseEvent _mouseEvent)
+      throws SynonymNotFound, BookNotFoundException, SAXException, ParseException, IOException {
+    if (_mouseEvent.getClickCount() == 2) {
+      searchSynonym();
     }
-    return result;
   }
 }

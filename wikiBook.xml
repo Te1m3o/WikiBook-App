@@ -3,7 +3,7 @@
     <sitename>Wikibooks</sitename>
     <dbname>dewikibooks</dbname>
     <base>https://de.wikibooks.org/wiki/Hauptseite</base>
-    <generator>MediaWiki 1.36.0-wmf.25</generator>
+    <generator>MediaWiki 1.36.0-wmf.26</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Medium</namespace>
