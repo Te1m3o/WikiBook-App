@@ -1,6 +1,5 @@
 package sample;
 
-import bibliothek.exceptions.BookNotFoundException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -33,7 +33,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.xml.sax.SAXException;
 import sample.bibliothek.*;
-import sample.exceptions.SynonymNotFound;
+import sample.exceptions.*;
 
 /** Fehler abfangen, falls Synonim nicht gefunden ist */
 public class Controller implements Initializable {
@@ -44,7 +44,10 @@ public class Controller implements Initializable {
   public ListView zListView;
   public ChoiceBox sort;
   public ListView synonymView;
+  public Button synonymButton;
+
   ActionEvent webAction;
+  ActionEvent buttonClicked;
   ObservableList<String> sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
   ObservableList<String> zettelkastenItems = FXCollections.observableArrayList();
   ObservableList<String> synonymItems = FXCollections.observableArrayList();
@@ -61,16 +64,23 @@ public class Controller implements Initializable {
 
   public void showWebsite(ActionEvent _actionEvent)
       throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
-    webAction=_actionEvent;
+    webAction = _actionEvent;
     Wikibook wikiBookMedium = null;
+    /** Active the synonym area * */
+    synonymView.setDisable(false);
+    synonymButton.setDisable(false);
+    /** parse title and load the link in the internet * */
     String title = bookTitle.getText().replace(" ", "_");
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
-    searchSynonym();
     engine.load(link);
+    /** Search Synonyms for the given title * */
+    searchSynonym(buttonClicked);
+    /** Give the error message, if the book not found in Wikibook * */
     try {
       wikiBookMedium = (Wikibook) myZettelkasten.findWikiBook(title);
       if (wikiBookMedium == null) {
-        throw new BookNotFoundException("The book not found, please enter another book");
+        throw new BookNotFoundException(
+            "Das Buch mit dem Titel " + "'" + bookTitle.getText() + "'" + " ist nicht gefunden");
       }
     } catch (IOException | BookNotFoundException _e) {
       Alert alert = new Alert(AlertType.ERROR);
@@ -78,6 +88,7 @@ public class Controller implements Initializable {
       alert.setContentText(_e.getMessage());
       alert.showAndWait();
     }
+    /** prints the last editor and the time of the last edit * */
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
   }
@@ -167,14 +178,15 @@ public class Controller implements Initializable {
    * @throws IOException
    * @throws ParseException
    */
-  public void searchSynonym()
+  public void searchSynonym(ActionEvent _actionEvent)
       throws IOException, ParseException, SynonymNotFound, BookNotFoundException, SAXException {
+    _actionEvent = buttonClicked;
     String toFind;
+    synonymItems.clear();
     String selectedItem = (String) synonymView.getSelectionModel().getSelectedItem();
     if (selectedItem == null) {
       toFind = bookTitle.getText();
     } else {
-      synonymItems.clear();
       toFind = selectedItem;
       bookTitle.setText(selectedItem);
       showWebsite(webAction);
@@ -182,7 +194,7 @@ public class Controller implements Initializable {
     String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
     String Corpus = "deu_news_2012_1M";
     String Anfragetyp = "/coocsim/";
-    String Parameter = "?minSim=0.1&limit=5";
+    String Parameter = "?minSim=0.1&limit=10";
     String Suchbegriff = toFind;
     URL myURL;
     myURL = new URL(BasisUrl + Corpus + Anfragetyp + Suchbegriff + Parameter);
@@ -211,10 +223,10 @@ public class Controller implements Initializable {
         Collections.sort(synonymItems);
         synonymView.setItems(synonymItems);
       } catch (SynonymNotFound err) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setHeaderText("Synonym not found");
-        alert.setContentText(err.getMessage());
-        alert.showAndWait();
+        synonymItems.add("<keine>");
+        synonymView.setItems(synonymItems);
+        synonymView.setDisable(true);
+        synonymButton.setDisable(true);
       }
     } catch (Exception err) {
       Alert alert = new Alert(AlertType.ERROR);
@@ -242,42 +254,10 @@ public class Controller implements Initializable {
     return result;
   }
 
-  public void searchSynonym(ActionEvent _actionEvent)
-      throws IOException, ParseException, SynonymNotFound, SAXException, BookNotFoundException {
-    String selectedItem = (String) synonymView.getSelectionModel().getSelectedItem();
-    bookTitle.setText(selectedItem);
-    String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
-    String Corpus = "deu_news_2012_1M";
-    String Anfragetyp = "/coocsim/";
-    String Parameter = "?minSim=0.1&limit=5";
-    String Suchbegriff = selectedItem;
-    URL myURL;
-    myURL = new URL(BasisUrl + Corpus + Anfragetyp + Suchbegriff + Parameter);
-    JSONParser jsonParser = new JSONParser();
-    String jsonResponse = streamToString(myURL.openStream());
-    // den gelieferten String in ein Array parsen
-    JSONArray jsonResponseArr = (JSONArray) jsonParser.parse(jsonResponse);
-    // das erste Element in diesem Array
-    JSONObject firstEntry = (JSONObject) jsonResponseArr.get(0);
-    // aus dem Element den Container für das Synonym beschaffen
-    JSONObject wordContainer = (JSONObject) firstEntry.get("word");
-    // aus dem Container das Synonym beschaffen
-    String synonym = (String) wordContainer.get("word");
-    // alle abgefragten Synonyme
-    for (Object el : jsonResponseArr) {
-      wordContainer = (JSONObject) ((JSONObject) el).get("word");
-      synonym = (String) wordContainer.get("word");
-      synonymItems.add(synonym);
-    }
-    Collections.sort(synonymItems);
-    synonymView.setItems(synonymItems);
-    showWebsite(webAction);
-  }
-
   public void mouseClicked(MouseEvent _mouseEvent)
       throws SynonymNotFound, BookNotFoundException, SAXException, ParseException, IOException {
     if (_mouseEvent.getClickCount() == 2) {
-      searchSynonym();
+      searchSynonym(buttonClicked);
     }
   }
 }

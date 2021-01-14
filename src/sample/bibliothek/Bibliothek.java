@@ -6,7 +6,7 @@
  */
 package sample.bibliothek;
 
-import bibliothek.exceptions.BookNotFoundException;
+import sample.exceptions.BookNotFoundException;
 import java.io.IOException;
 import org.xml.sax.SAXException;
 

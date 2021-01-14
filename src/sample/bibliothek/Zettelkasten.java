@@ -1,7 +1,6 @@
 /** @author Teimurazi Euashvili(Matrikelnummer:18808) */
 package sample.bibliothek;
-
-import bibliothek.exceptions.BookNotFoundException;
+import sample.exceptions.BookNotFoundException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
