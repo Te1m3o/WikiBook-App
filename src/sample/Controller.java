@@ -48,23 +48,28 @@ public class Controller implements Initializable {
   public Button synonymButton;
   public Button backButton;
   public Button nextButton;
+  public ChoiceBox termHistory;
   String lastItem;
   String nextItem;
   int counter = 1;
   ActionEvent webAction;
   ActionEvent buttonClicked;
   ObservableList<String> sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
+  ObservableList<Integer> termItems = FXCollections.observableArrayList();
   ObservableList<String> zettelkastenItems = FXCollections.observableArrayList();
   ObservableList<String> synonymItems = FXCollections.observableArrayList();
   ActionEvent buttonEvent;
   public WebEngine engine;
   Zettelkasten myZettelkasten = new Zettelkasten();
   ArrayList<String> searchedItems = new ArrayList<String>();
+  int termID = -1;
+  boolean bookFound = true;
 
   @Override
   public void initialize(URL _url, ResourceBundle _resourceBundle) {
     sort.setItems(sortWay);
     sort.setValue("A-Z");
+    termHistory.setValue(termID);
     engine = webView.getEngine();
     nextButton.setDisable(true);
   }
@@ -94,14 +99,20 @@ public class Controller implements Initializable {
       alert.setHeaderText("BookNotFound Error");
       alert.setContentText(_e.getMessage());
       alert.showAndWait();
-      searchedItems.add(title);
+      bookFound = false;
+      nextButton.setDisable(true);
+      counter--;
     }
     /** prints the last editor and the time of the last edit * */
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
     /** Add the item to the Searched history list * */
-    if (!(searchedItems.contains(title))) {
+    if (!(searchedItems.contains(title) && bookFound)) {
       searchedItems.add(title);
+      termID++;
+      termItems.add(termID);
+      termHistory.setItems(termItems);
+      termHistory.setValue(termItems.get(termItems.size()-1));
     }
   }
 
@@ -290,6 +301,7 @@ public class Controller implements Initializable {
     if (searchedItems.indexOf(lastItem) == 0) {
       backButton.setDisable(true);
     }
+    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())-1));
   }
 
   public void nextItem(ActionEvent _actionEvent)
@@ -304,5 +316,6 @@ public class Controller implements Initializable {
     if (searchedItems.indexOf(nextItem) == searchedItems.size() - 1) {
       nextButton.setDisable(true);
     }
+    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())+1));
   }
 }
