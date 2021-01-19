@@ -14,7 +14,7 @@ public class ElektronischesMedium extends Medium {
             this.url = _url;
         }else {
             this.url=null;
-            System.out.println("The URL doesn't match any of the Onlinemedien");
+            //System.out.println("The URL doesn't match any of the Onlinemedien");
         }
     }
 

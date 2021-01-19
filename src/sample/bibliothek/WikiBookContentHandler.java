@@ -53,7 +53,7 @@ public class WikiBookContentHandler implements ContentHandler {
   public void endElement(String uri, String localName, String qName) throws SAXException {
     /** Set title of the wikiBook **/
     if (localName.equals("title")) {
-      System.out.println(currentValue);
+     // System.out.println(currentValue);
       wikibook = new Wikibook(currentValue,null);
     }
     /** Last edition **/
@@ -84,16 +84,16 @@ public class WikiBookContentHandler implements ContentHandler {
       wikibook.setLetzteBearbeitung(letzteberarbeitung);
       String output = "Letzte Änderung: " + day  + "." + month + "." + year + " um " + uhr + ":"
           + minute + " Uhr";
-      System.out.println(output);
+     // System.out.println(output);
     }
     /** Author **/
     if (localName.equals("ip") && (contributor)){
       wikibook.setAutor(currentValue);
-      System.out.println("Urheber: " + currentValue);
+      //System.out.println("Urheber: " + currentValue);
     }
     if (localName.equals("username") && (contributor)) {
       wikibook.setAutor(currentValue);
-      System.out.println("Urheber: " + currentValue);
+     // System.out.println("Urheber: " + currentValue);
     }
     /** Categories and the Chapters **/
     if (localName.equals("text")){
@@ -123,7 +123,7 @@ public class WikiBookContentHandler implements ContentHandler {
         information.append("\n");
         counter++;
       }
-      System.out.println(information.toString());
+     // System.out.println(information.toString());
     }
   }
 

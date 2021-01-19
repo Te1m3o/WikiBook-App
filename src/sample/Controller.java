@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.ResourceBundle;
@@ -45,7 +46,11 @@ public class Controller implements Initializable {
   public ChoiceBox sort;
   public ListView synonymView;
   public Button synonymButton;
-
+  public Button backButton;
+  public Button nextButton;
+  String lastItem;
+  String nextItem;
+  int counter = 1;
   ActionEvent webAction;
   ActionEvent buttonClicked;
   ObservableList<String> sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
@@ -54,12 +59,13 @@ public class Controller implements Initializable {
   ActionEvent buttonEvent;
   public WebEngine engine;
   Zettelkasten myZettelkasten = new Zettelkasten();
-
+  ArrayList<String>searchedItems = new ArrayList<String>();
   @Override
   public void initialize(URL _url, ResourceBundle _resourceBundle) {
     sort.setItems(sortWay);
     sort.setValue("A-Z");
     engine = webView.getEngine();
+    nextButton.setDisable(true);
   }
 
   public void showWebsite(ActionEvent _actionEvent)
@@ -87,10 +93,15 @@ public class Controller implements Initializable {
       alert.setHeaderText("BookNotFound Error");
       alert.setContentText(_e.getMessage());
       alert.showAndWait();
+      searchedItems.add(title);
     }
     /** prints the last editor and the time of the last edit * */
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
+    /** Add the item to the Searched history list **/
+    if (!(searchedItems.contains(title))){
+      searchedItems.add(title);
+    }
   }
 
   public void enterPressed(KeyEvent _keyEvent)
@@ -182,13 +193,14 @@ public class Controller implements Initializable {
       throws IOException, ParseException, SynonymNotFound, BookNotFoundException, SAXException {
     _actionEvent = buttonClicked;
     String toFind;
-    synonymItems.clear();
     String selectedItem = (String) synonymView.getSelectionModel().getSelectedItem();
+    System.out.println(selectedItem);
     if (selectedItem == null) {
       toFind = bookTitle.getText();
     } else {
       toFind = selectedItem;
       bookTitle.setText(selectedItem);
+      synonymItems.clear();
       showWebsite(webAction);
     }
     String BasisUrl = "http://api.corpora.uni-leipzig.de/ws/similarity/";
@@ -220,14 +232,21 @@ public class Controller implements Initializable {
           synonym = (String) wordContainer.get("word");
           synonymItems.add(synonym);
         }
+        /** Sort the Array Ascending **/
         Collections.sort(synonymItems);
+        /** Display Synonyms on the Synonym view **/
         synonymView.setItems(synonymItems);
+        /**
+         * If Synonym not found
+         * hide the synonym view and the button
+         */
       } catch (SynonymNotFound err) {
         synonymItems.add("<keine>");
         synonymView.setItems(synonymItems);
         synonymView.setDisable(true);
         synonymButton.setDisable(true);
       }
+      /** Catch the Network error **/
     } catch (Exception err) {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setHeaderText("ERROR");
@@ -258,6 +277,32 @@ public class Controller implements Initializable {
       throws SynonymNotFound, BookNotFoundException, SAXException, ParseException, IOException {
     if (_mouseEvent.getClickCount() == 2) {
       searchSynonym(buttonClicked);
+    }
+  }
+  public void previousItem(ActionEvent _actionEvent)
+      throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
+    counter++;
+    nextButton.setDisable(false);
+    lastItem = (searchedItems.get(searchedItems.size()-counter));
+    System.out.println(searchedItems.indexOf(lastItem));
+    bookTitle.setText(lastItem);
+    showWebsite(webAction);
+    if (searchedItems.indexOf(lastItem)==0){
+      backButton.setDisable(true);
+    }
+  }
+
+  public void nextItem(ActionEvent _actionEvent)
+      throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
+    nextItem=searchedItems.get(searchedItems.indexOf(lastItem)+1);
+    System.out.println(searchedItems.indexOf(nextItem));
+    bookTitle.setText(nextItem);
+    showWebsite(webAction);
+    backButton.setDisable(false);
+    counter--;
+    lastItem = (searchedItems.get(searchedItems.size()-counter));
+    if (searchedItems.indexOf(nextItem)==searchedItems.size()-1){
+      nextButton.setDisable(true);
     }
   }
 }
