@@ -82,15 +82,34 @@ public class Controller implements Initializable {
     synonymButton.setDisable(false);
     /** parse title and load the link in the internet * */
     String title = bookTitle.getText().replace(" ", "_");
+    /**
+     * If the title is new and the next element is not the last element
+     */
+    if (!(searchedItems.contains(title)) && !(nextItem==null) && !(searchedItems.indexOf(lastItem)==searchedItems.size()-1)){
+      System.out.println("Come on");
+      int lastItemIndex= searchedItems.indexOf(lastItem);
+      System.out.println("Last Item Index - " + lastItemIndex);
+      searchedItems.removeIf(i -> (
+        (searchedItems.indexOf(i)>lastItemIndex)
+      ));
+      termItems.removeIf(id -> (termItems.indexOf(id)>lastItemIndex));
+      termID = lastItemIndex;
+      counter=1;
+      backButton.setDisable(false);
+      nextButton.setDisable(true);
+      for (String item : searchedItems ) {
+        System.out.println(item);
+      }
+    }
     /** Add the item to the Searched history list, if the item doesnt included * */
     if (!(searchedItems.contains(title))) {
-      System.out.println("That is not correct");
       searchedItems.add(title);
       termID++;
       termItems.add(termID);
       termHistory.setItems(termItems);
       termHistory.setValue(termItems.get(termItems.size()-1));
     }
+
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
     engine.load(link);
     /** Search Synonyms for the given title * */
@@ -292,8 +311,9 @@ public class Controller implements Initializable {
     counter++;
     nextButton.setDisable(false);
     lastItem = (searchedItems.get(searchedItems.size() - counter));
+    nextItem = searchedItems.get(searchedItems.indexOf(lastItem) + 1);
     System.out.println(searchedItems.indexOf(lastItem));
-    bookTitle.setText(lastItem);
+    bookTitle.setText(lastItem.replace("_", " "));
     if (searchedItems.indexOf(lastItem) == 0) {
       backButton.setDisable(true);
     }

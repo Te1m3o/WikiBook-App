@@ -35,67 +35,57 @@
     </namespaces>
   </siteinfo>
   <page>
-    <title>Bridge</title>
+    <title>Mathematik</title>
     <ns>0</ns>
-    <id>28496</id>
+    <id>26</id>
     <revision>
-      <id>721274</id>
-      <parentid>719780</parentid>
-      <timestamp>2014-10-31T09:41:04Z</timestamp>
+      <id>602297</id>
+      <parentid>495333</parentid>
+      <timestamp>2011-09-23T16:28:24Z</timestamp>
       <contributor>
-        <username>Qwertz84</username>
-        <id>53791</id>
+        <username>Juetho</username>
+        <id>15246</id>
       </contributor>
       <minor/>
-      <comment>-BK</comment>
+      <comment>Parameter Regal1 und Regal2 ohne Namen, nur mit Nummer (wie bei Vorlage:Regal)</comment>
       <model>wikitext</model>
       <format>text/x-wiki</format>
-      <text bytes="2194" xml:space="preserve">{{Infoleiste|Spiele|Freizeit|L}}
+      <text bytes="1895" xml:space="preserve">{{Reihe|Mathematik}}
 
-&lt;div&gt;
-{|width="360px" border="1" cellpadding="10" cellspacing="0" style="margin:0.5em;border-collapse:collapse; border-style:1px solid; border-color:#666666; background-color:#CCCCCC; font-size:100%; color:#191919;" align="right"
-|-
-|
-[[Image:Info_icon.png|right]]&lt;div style="font-size:140%;color:#FFFFFF;margin-bottom:1em;"&gt;'''Buchinfo'''&lt;/div&gt;
-
-&lt;div style="font-size:100%"&gt;
-'''Inhalt:''' Wissenswertes über das Kartenspiel und erste Schritte&lt;/br&gt;
-'''Zielgruppe:''' Leser, die ihr Allgemeinwissen verbessern wollen; Spieler, die ein neues Kartenspiel kennenlernen wollen&lt;/br&gt;
-'''Projektbeschreibung:''' [[Diskussion:Bridge|siehe hier]]&lt;/br&gt;
+{| border=1 style="border:0px"
+| style="border:0px" | &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+| style="border:0px solid #448800; padding:0; background-color:#bb2020" |
+&lt;div style="padding:2em; text-align:center; font-weight:normal; font-size:100%"&gt;
+&lt;div style="padding:2em; text-align:center; font-weight:normal; font-size:100%"&gt;
 &lt;/div&gt;
+&lt;div style="padding:0.3em; text-align:center; font-weight:bold; font-size:300%"&gt;
+&lt;font color="white"&gt;Lehrbuch der&lt;/font&gt;&lt;/div&gt;
+&lt;div style="padding:0.3em; text-align:center; font-weight:bold; font-size:400%"&gt;
+&lt;font color="white"&gt;Mathematik&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="padding:4em; text-align:center; font-weight:normal; font-size:100%"&gt;
+[[Image:Teorema de Pitágoras.Pitágoras b.svg|Satz des Pythagoras]]
+
+&lt;div style="padding:0.2em; text-align:center; font-weight:bold; font-size:150%;"&gt;
+&lt;font color="white"&gt;Eine Einführung in die Mathematik&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div style="padding:0.0em; text-align:left; font-weight:normal; font-size:100%;"&gt;
+&lt;font color="white"&gt;Anmerkung: Dieses Lehrbuch wächst durch freiwillige Mitarbeit aller, die etwas dazu beitragen wollen. Alle Kapitel dieses Buches können von jedem erstellt und erweitert werden. Ziel ist es ein Lehrbuch zu erhalten, welches alle Bereiche der Mathematik abdeckt und dabei möglichst allen Zielgruppen gerecht wird. Mehr dazu auf der [[Talk:Mathematik|Diskussionsseite]], wo auch die Möglichkeit besteht über das Konzept zu diskutieren.&lt;/font&gt;&lt;/div&gt;
+
+&lt;div style="padding:2em; text-align:right; font-weight:normal; font-size:100%;"&gt;
+&amp;rarr;&amp;nbsp;&amp;nbsp;[[Mathematik: Inhaltsübersicht|Buch aufblättern]]
+&lt;/div&gt;
+&lt;/div&gt;
+| style="border:1px" | &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
 |}
-&lt;/div&gt;
-----
-'''Baustelle!'''
-Die Fertigstellung des Buches wird noch einige Zeit in Anspruch nehmen!
 
-----
-&lt;/br&gt;Bridge ist das spannendste Kartenspiel der Welt! Es ist leicht zu erlernen, jedoch braucht es seine Zeit, um gut zu spielen. Es bringt viel Spaß und ist eine große Herausforderung. Im Gegensatz zu anderen Spielen dauert ein Spiel nur ca. 5-10 Minuten. Das gute Gefühl einer perfekt gespielten Bridge-Hand kann jedoch Jahre überdauern. 
+[[Kategorie:Mehrbändiges Werk]]
 
-::'''Informieren Sie sich über das Spiel!'''
-
-*'''Band 1: Ein Kartenspiel mit vielen Gesichtern'''
-::Der erste Band soll dabei helfen, das Spiel in all seinen Facetten vorzustellen. Es wird auf die Entwicklung und die heutige Bedeutung des Spiels eingegangen. 
-
-*'''Band 2: Das Spiel - erste Schritte'''
-::Die Spielregeln werden erst im zweiten Band erläutert. Kapitel wie „Bridge in 10 Minuten“ dürfen jedoch nicht darüber hinwegtäuschen, dass Bridge seine Faszination durch seine Vielseitigkeit erlangt. Obwohl weltweit nach gleichen Regeln gespielt wird, sind die Möglichkeiten innerhalb des Spiels nahezu grenzenlos. Ein Abend wird ausreichen um eine Übersicht über das Spiel zu bekommen, aber keinesfalls genügen, um das Spiel zu beherrschen.
-
-
-
-[[Bridge: Inhalt|Eingang zur Schreibstube]]
-
-__NOTOC__
-
-
-[[Kategorie:Buch]]
-
-{{todo|gegebenenfalls mit der Seite [[Kartenspiele: Bridge]] abgleichen oder sogar ineinander überführen.|Spiele}}
-
-[[en:Bridge]]
-[[he:ברידג']]
-[[ja:コントラクトブリッジ]]
-[[sv:Lärobok i bridge]]</text>
-      <sha1>7kgezb7q1bldi9f6gmxn8n9lsriv8f1</sha1>
+[[cy:Silff lyfrau:Mathemateg]]
+[[he:מדף:מתמטיקה]]
+[[ja:数学]]
+[[nl:Wiskunde]]</text>
+      <sha1>4eobtxkqhhhz22cejozrmej8pnyzlhs</sha1>
     </revision>
   </page>
 </mediawiki>
