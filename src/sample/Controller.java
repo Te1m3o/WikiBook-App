@@ -63,7 +63,6 @@ public class Controller implements Initializable {
   Zettelkasten myZettelkasten = new Zettelkasten();
   ArrayList<String> searchedItems = new ArrayList<String>();
   int termID = -1;
-  boolean bookFound = true;
 
   @Override
   public void initialize(URL _url, ResourceBundle _resourceBundle) {
@@ -83,6 +82,15 @@ public class Controller implements Initializable {
     synonymButton.setDisable(false);
     /** parse title and load the link in the internet * */
     String title = bookTitle.getText().replace(" ", "_");
+    /** Add the item to the Searched history list, if the item doesnt included * */
+    if (!(searchedItems.contains(title))) {
+      System.out.println("That is not correct");
+      searchedItems.add(title);
+      termID++;
+      termItems.add(termID);
+      termHistory.setItems(termItems);
+      termHistory.setValue(termItems.get(termItems.size()-1));
+    }
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
     engine.load(link);
     /** Search Synonyms for the given title * */
@@ -99,21 +107,10 @@ public class Controller implements Initializable {
       alert.setHeaderText("BookNotFound Error");
       alert.setContentText(_e.getMessage());
       alert.showAndWait();
-      bookFound = false;
-      nextButton.setDisable(true);
-      counter--;
     }
     /** prints the last editor and the time of the last edit * */
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
-    /** Add the item to the Searched history list * */
-    if (!(searchedItems.contains(title) && bookFound)) {
-      searchedItems.add(title);
-      termID++;
-      termItems.add(termID);
-      termHistory.setItems(termItems);
-      termHistory.setValue(termItems.get(termItems.size()-1));
-    }
   }
 
   public void enterPressed(KeyEvent _keyEvent)
@@ -297,25 +294,25 @@ public class Controller implements Initializable {
     lastItem = (searchedItems.get(searchedItems.size() - counter));
     System.out.println(searchedItems.indexOf(lastItem));
     bookTitle.setText(lastItem);
-    showWebsite(webAction);
     if (searchedItems.indexOf(lastItem) == 0) {
       backButton.setDisable(true);
     }
     termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())-1));
+    showWebsite(webAction);
   }
 
   public void nextItem(ActionEvent _actionEvent)
       throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
     nextItem = searchedItems.get(searchedItems.indexOf(lastItem) + 1);
+    if (searchedItems.indexOf(nextItem) == (searchedItems.size()-1)){
+      nextButton.setDisable(true);
+    }
     System.out.println(searchedItems.indexOf(nextItem));
     bookTitle.setText(nextItem);
-    showWebsite(webAction);
     backButton.setDisable(false);
     counter--;
     lastItem = (searchedItems.get(searchedItems.size() - counter));
-    if (searchedItems.indexOf(nextItem) == searchedItems.size() - 1) {
-      nextButton.setDisable(true);
-    }
     termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())+1));
+    showWebsite(webAction);
   }
 }
