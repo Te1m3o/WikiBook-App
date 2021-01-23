@@ -3,7 +3,7 @@
     <sitename>Wikibooks</sitename>
     <dbname>dewikibooks</dbname>
     <base>https://de.wikibooks.org/wiki/Hauptseite</base>
-    <generator>MediaWiki 1.36.0-wmf.26</generator>
+    <generator>MediaWiki 1.36.0-wmf.27</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Medium</namespace>
@@ -34,58 +34,4 @@
       <namespace key="2303" case="case-sensitive">Gadget-Definition Diskussion</namespace>
     </namespaces>
   </siteinfo>
-  <page>
-    <title>Mathematik</title>
-    <ns>0</ns>
-    <id>26</id>
-    <revision>
-      <id>602297</id>
-      <parentid>495333</parentid>
-      <timestamp>2011-09-23T16:28:24Z</timestamp>
-      <contributor>
-        <username>Juetho</username>
-        <id>15246</id>
-      </contributor>
-      <minor/>
-      <comment>Parameter Regal1 und Regal2 ohne Namen, nur mit Nummer (wie bei Vorlage:Regal)</comment>
-      <model>wikitext</model>
-      <format>text/x-wiki</format>
-      <text bytes="1895" xml:space="preserve">{{Reihe|Mathematik}}
-
-{| border=1 style="border:0px"
-| style="border:0px" | &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-| style="border:0px solid #448800; padding:0; background-color:#bb2020" |
-&lt;div style="padding:2em; text-align:center; font-weight:normal; font-size:100%"&gt;
-&lt;div style="padding:2em; text-align:center; font-weight:normal; font-size:100%"&gt;
-&lt;/div&gt;
-&lt;div style="padding:0.3em; text-align:center; font-weight:bold; font-size:300%"&gt;
-&lt;font color="white"&gt;Lehrbuch der&lt;/font&gt;&lt;/div&gt;
-&lt;div style="padding:0.3em; text-align:center; font-weight:bold; font-size:400%"&gt;
-&lt;font color="white"&gt;Mathematik&lt;/font&gt;&lt;/div&gt;
-
-&lt;div style="padding:4em; text-align:center; font-weight:normal; font-size:100%"&gt;
-[[Image:Teorema de Pitágoras.Pitágoras b.svg|Satz des Pythagoras]]
-
-&lt;div style="padding:0.2em; text-align:center; font-weight:bold; font-size:150%;"&gt;
-&lt;font color="white"&gt;Eine Einführung in die Mathematik&lt;/font&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div style="padding:0.0em; text-align:left; font-weight:normal; font-size:100%;"&gt;
-&lt;font color="white"&gt;Anmerkung: Dieses Lehrbuch wächst durch freiwillige Mitarbeit aller, die etwas dazu beitragen wollen. Alle Kapitel dieses Buches können von jedem erstellt und erweitert werden. Ziel ist es ein Lehrbuch zu erhalten, welches alle Bereiche der Mathematik abdeckt und dabei möglichst allen Zielgruppen gerecht wird. Mehr dazu auf der [[Talk:Mathematik|Diskussionsseite]], wo auch die Möglichkeit besteht über das Konzept zu diskutieren.&lt;/font&gt;&lt;/div&gt;
-
-&lt;div style="padding:2em; text-align:right; font-weight:normal; font-size:100%;"&gt;
-&amp;rarr;&amp;nbsp;&amp;nbsp;[[Mathematik: Inhaltsübersicht|Buch aufblättern]]
-&lt;/div&gt;
-&lt;/div&gt;
-| style="border:1px" | &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
-|}
-
-[[Kategorie:Mehrbändiges Werk]]
-
-[[cy:Silff lyfrau:Mathemateg]]
-[[he:מדף:מתמטיקה]]
-[[ja:数学]]
-[[nl:Wiskunde]]</text>
-      <sha1>4eobtxkqhhhz22cejozrmej8pnyzlhs</sha1>
-    </revision>
-  </page>
 </mediawiki>

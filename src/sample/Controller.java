@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -49,6 +50,7 @@ public class Controller implements Initializable {
   public Button backButton;
   public Button nextButton;
   public ChoiceBox termHistory;
+  public ComboBox termChoice;
   String lastItem;
   String nextItem;
   int counter = 1;
@@ -58,6 +60,7 @@ public class Controller implements Initializable {
   ObservableList<Integer> termItems = FXCollections.observableArrayList();
   ObservableList<String> zettelkastenItems = FXCollections.observableArrayList();
   ObservableList<String> synonymItems = FXCollections.observableArrayList();
+  ObservableList<String> termComboBox = FXCollections.observableArrayList();
   ActionEvent buttonEvent;
   public WebEngine engine;
   Zettelkasten myZettelkasten = new Zettelkasten();
@@ -75,7 +78,9 @@ public class Controller implements Initializable {
 
   public void showWebsite(ActionEvent _actionEvent)
       throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
+    /** Get the action **/
     webAction = _actionEvent;
+    /** Initialize Wikibook **/
     Wikibook wikiBookMedium = null;
     /** Active the synonym area * */
     synonymView.setDisable(false);
@@ -83,33 +88,42 @@ public class Controller implements Initializable {
     /** parse title and load the link in the internet * */
     String title = bookTitle.getText().replace(" ", "_");
     /**
-     * If the title is new and the next element is not the last element
+     * If the new title entered and the last element of the array is not the last element of the array
+     * crop the array to the new item and set the new item as the last item
      */
     if (!(searchedItems.contains(title)) && !(nextItem==null) && !(searchedItems.indexOf(lastItem)==searchedItems.size()-1)){
-      System.out.println("Come on");
-      int lastItemIndex= searchedItems.indexOf(lastItem);
-      System.out.println("Last Item Index - " + lastItemIndex);
+      int lastItemIndex= searchedItems.indexOf(lastItem); // 2
+      System.out.println(lastItemIndex);
       searchedItems.removeIf(i -> (
         (searchedItems.indexOf(i)>lastItemIndex)
       ));
+      termComboBox.removeIf(item -> (termComboBox.indexOf(item)<termComboBox.indexOf(lastItem)));
       termItems.removeIf(id -> (termItems.indexOf(id)>lastItemIndex));
       termID = lastItemIndex;
       counter=1;
       backButton.setDisable(false);
       nextButton.setDisable(true);
-      for (String item : searchedItems ) {
-        System.out.println(item);
-      }
     }
     /** Add the item to the Searched history list, if the item doesnt included * */
     if (!(searchedItems.contains(title))) {
       searchedItems.add(title);
+      /** Add the item Combobox too **/
+      if (termComboBox.size()==0){
+        termComboBox.add(bookTitle.getText());
+      }else {
+        /** Add new Element as the first element (in reverse chronological order) **/
+        termComboBox.add(0,bookTitle.getText());
+      }
+      /** configure the history of terms(ID) **/
       termID++;
       termItems.add(termID);
       termHistory.setItems(termItems);
       termHistory.setValue(termItems.get(termItems.size()-1));
+      /** configure the history of terms with(Title) */
+      termChoice.setItems(termComboBox);
+      termChoice.setValue(termComboBox.get(0));
     }
-
+    /** Create a link to load the website **/
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
     engine.load(link);
     /** Search Synonyms for the given title * */
@@ -312,12 +326,12 @@ public class Controller implements Initializable {
     nextButton.setDisable(false);
     lastItem = (searchedItems.get(searchedItems.size() - counter));
     nextItem = searchedItems.get(searchedItems.indexOf(lastItem) + 1);
-    System.out.println(searchedItems.indexOf(lastItem));
     bookTitle.setText(lastItem.replace("_", " "));
     if (searchedItems.indexOf(lastItem) == 0) {
       backButton.setDisable(true);
     }
     termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())-1));
+    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue())+1));
     showWebsite(webAction);
   }
 
@@ -327,12 +341,21 @@ public class Controller implements Initializable {
     if (searchedItems.indexOf(nextItem) == (searchedItems.size()-1)){
       nextButton.setDisable(true);
     }
-    System.out.println(searchedItems.indexOf(nextItem));
     bookTitle.setText(nextItem);
     backButton.setDisable(false);
     counter--;
     lastItem = (searchedItems.get(searchedItems.size() - counter));
     termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())+1));
+    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue())-1));
     showWebsite(webAction);
+  }
+
+  public void anotherItemSelected(ActionEvent _actionEvent)
+      throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
+    /** Check whether it is another item or not **/
+    if (!(bookTitle.getText().equals(termChoice.getValue()))){
+      bookTitle.setText((String) termChoice.getValue());
+      showWebsite(webAction);
+    }
   }
 }
