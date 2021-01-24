@@ -1,3 +1,4 @@
+/** @author Teimurazi Euashvili(Matrikelnummer:18808) */
 package sample;
 
 import java.io.FileNotFoundException;
@@ -37,35 +38,40 @@ import org.xml.sax.SAXException;
 import sample.bibliothek.*;
 import sample.exceptions.*;
 
-/** Fehler abfangen, falls Synonim nicht gefunden ist */
 public class Controller implements Initializable {
+
   @FXML public WebView webView;
-  public TextField bookTitle;
-  public Label lastEditor;
-  public Label lastEdition;
-  public ListView zListView;
+  @FXML public TextField bookTitle;
+  @FXML public Label lastEditor;
+  @FXML public Label lastEdition;
+  @FXML public ListView zListView;
   public ChoiceBox sort;
-  public ListView synonymView;
-  public Button synonymButton;
-  public Button backButton;
-  public Button nextButton;
-  public ChoiceBox termHistory;
-  public ComboBox termChoice;
+  @FXML public ListView synonymView;
+  @FXML public Button synonymButton;
+  @FXML public Button backButton;
+  @FXML public Button nextButton;
+  @FXML public ChoiceBox termHistory;
+  @FXML public ComboBox termChoice;
+  /** Variables for navigate between next and previous elements * */
   String lastItem;
   String nextItem;
   int counter = 1;
+  int termID = -1;
+  /** Save actions, which is needed to call the function * */
   ActionEvent webAction;
   ActionEvent buttonClicked;
+  ActionEvent buttonEvent;
+  /** Array list for list view, combo box and choice box * */
   ObservableList<String> sortWay = FXCollections.observableArrayList("A-Z", "Z-A");
   ObservableList<Integer> termItems = FXCollections.observableArrayList();
   ObservableList<String> zettelkastenItems = FXCollections.observableArrayList();
   ObservableList<String> synonymItems = FXCollections.observableArrayList();
   ObservableList<String> termComboBox = FXCollections.observableArrayList();
-  ActionEvent buttonEvent;
+
   public WebEngine engine;
+
   Zettelkasten myZettelkasten = new Zettelkasten();
   ArrayList<String> searchedItems = new ArrayList<String>();
-  int termID = -1;
 
   @Override
   public void initialize(URL _url, ResourceBundle _resourceBundle) {
@@ -75,55 +81,52 @@ public class Controller implements Initializable {
     engine = webView.getEngine();
     nextButton.setDisable(true);
   }
-
+  /** Shows the book with the given title in the wikibook.org * */
   public void showWebsite(ActionEvent _actionEvent)
       throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
-    /** Get the action **/
+    /** Get the action * */
     webAction = _actionEvent;
-    /** Initialize Wikibook **/
+    /** Initialize Wikibook * */
     Wikibook wikiBookMedium = null;
     /** Active the synonym area * */
     synonymView.setDisable(false);
     synonymButton.setDisable(false);
     /** parse title and load the link in the internet * */
     String title = bookTitle.getText().replace(" ", "_");
-    /**
-     * If the new title entered and the last element of the array is not the last element of the array
-     * crop the array to the new item and set the new item as the last item
-     */
-    if (!(searchedItems.contains(title)) && !(nextItem==null) && !(searchedItems.indexOf(lastItem)==searchedItems.size()-1)){
-      int lastItemIndex= searchedItems.indexOf(lastItem); // 2
+    /** crops the Array */
+    if (!(searchedItems.contains(title))
+        && !(nextItem == null)
+        && !(searchedItems.indexOf(lastItem) == searchedItems.size() - 1)) {
+      int lastItemIndex = searchedItems.indexOf(lastItem); // 2
       System.out.println(lastItemIndex);
-      searchedItems.removeIf(i -> (
-        (searchedItems.indexOf(i)>lastItemIndex)
-      ));
-      termComboBox.removeIf(item -> (termComboBox.indexOf(item)<termComboBox.indexOf(lastItem)));
-      termItems.removeIf(id -> (termItems.indexOf(id)>lastItemIndex));
+      searchedItems.removeIf(i -> ((searchedItems.indexOf(i) > lastItemIndex)));
+      termComboBox.removeIf(item -> (termComboBox.indexOf(item) < termComboBox.indexOf(lastItem)));
+      termItems.removeIf(id -> (termItems.indexOf(id) > lastItemIndex));
       termID = lastItemIndex;
-      counter=1;
+      counter = 1;
       backButton.setDisable(false);
       nextButton.setDisable(true);
     }
-    /** Add the item to the Searched history list, if the item doesnt included * */
+    /** Adds the item to the Searched history list, if the item doesnt included * */
     if (!(searchedItems.contains(title))) {
       searchedItems.add(title);
-      /** Add the item Combobox too **/
-      if (termComboBox.size()==0){
+      /** Add the item Combobox too * */
+      if (termComboBox.size() == 0) {
         termComboBox.add(bookTitle.getText());
-      }else {
-        /** Add new Element as the first element (in reverse chronological order) **/
-        termComboBox.add(0,bookTitle.getText());
+      } else {
+        /** Add new Element as the first element of the array (in reverse chronological order) * */
+        termComboBox.add(0, bookTitle.getText());
       }
-      /** configure the history of terms(ID) **/
+      /** configure the history of terms(ID) * */
       termID++;
       termItems.add(termID);
       termHistory.setItems(termItems);
-      termHistory.setValue(termItems.get(termItems.size()-1));
+      termHistory.setValue(termItems.get(termItems.size() - 1));
       /** configure the history of terms with(Title) */
       termChoice.setItems(termComboBox);
       termChoice.setValue(termComboBox.get(0));
     }
-    /** Create a link to load the website **/
+    /** Create a link to load the website * */
     String link = "http://de.wikibooks.org/wiki/" + bookTitle.getText();
     engine.load(link);
     /** Search Synonyms for the given title * */
@@ -145,7 +148,7 @@ public class Controller implements Initializable {
     lastEditor.setText("Letzter Bearbeiter " + wikiBookMedium.getAutor());
     lastEdition.setText("Letzte Änderung " + wikiBookMedium.getLetzteBearbeitung());
   }
-
+  /** Calls the function showWebsite if enter pressed * */
   public void enterPressed(KeyEvent _keyEvent)
       throws IOException, SAXException, BookNotFoundException, ParseException, SynonymNotFound {
     if (_keyEvent.getCode() == KeyCode.ENTER) {
@@ -154,7 +157,7 @@ public class Controller implements Initializable {
   }
 
   /**
-   * Adds the WikiBook to the Zettelkasten and displays it on the LisView
+   * Adds the WikiBook to the Zettelkasten and displays it on the Medium LisView
    *
    * @param _actionEvent
    * @throws IOException
@@ -176,7 +179,7 @@ public class Controller implements Initializable {
   }
 
   /**
-   * Sorts the Zettelkasten Array and displays it sorted on the LisView
+   * Sorts the Zettelkasten Array and displays it sorted on the Medium LisView
    *
    * @param _actionEvent
    */
@@ -206,7 +209,7 @@ public class Controller implements Initializable {
   }
 
   /**
-   * Deserializes the Object from the file: 'myZettelkasten' and displays it on the ListView
+   * Deserializes the Object from the file: 'myZettelkasten' and displays it on the Medium ListView
    *
    * @param _actionEvent
    * @throws FileNotFoundException
@@ -226,7 +229,7 @@ public class Controller implements Initializable {
   }
 
   /**
-   * Searches the synonymous with the given title and displays the result on the ListView
+   * Searches the synonymous with the given title and displays the result on the Synonym ListView
    *
    * @throws IOException
    * @throws ParseException
@@ -312,14 +315,14 @@ public class Controller implements Initializable {
     }
     return result;
   }
-
+  /** calls the function searchsynonym, if the item in the Listview is selected * */
   public void mouseClicked(MouseEvent _mouseEvent)
       throws SynonymNotFound, BookNotFoundException, SAXException, ParseException, IOException {
     if (_mouseEvent.getClickCount() == 2) {
       searchSynonym(buttonClicked);
     }
   }
-
+  /** Shows the previous Item * */
   public void previousItem(ActionEvent _actionEvent)
       throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
     counter++;
@@ -330,32 +333,53 @@ public class Controller implements Initializable {
     if (searchedItems.indexOf(lastItem) == 0) {
       backButton.setDisable(true);
     }
-    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())-1));
-    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue())+1));
+    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue()) - 1));
+    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue()) + 1));
     showWebsite(webAction);
   }
-
+  /** Shows the next Item * */
   public void nextItem(ActionEvent _actionEvent)
       throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
     nextItem = searchedItems.get(searchedItems.indexOf(lastItem) + 1);
-    if (searchedItems.indexOf(nextItem) == (searchedItems.size()-1)){
+    if (searchedItems.indexOf(nextItem) == (searchedItems.size() - 1)) {
       nextButton.setDisable(true);
     }
     bookTitle.setText(nextItem);
     backButton.setDisable(false);
     counter--;
     lastItem = (searchedItems.get(searchedItems.size() - counter));
-    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue())+1));
-    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue())-1));
+    termHistory.setValue(termItems.get(termItems.indexOf(termHistory.getValue()) + 1));
+    termChoice.setValue(termComboBox.get(termComboBox.indexOf(termChoice.getValue()) - 1));
     showWebsite(webAction);
   }
-
+ /** prints the item, which is selected in the combobox **/
   public void anotherItemSelected(ActionEvent _actionEvent)
       throws SynonymNotFound, SAXException, BookNotFoundException, ParseException, IOException {
-    /** Check whether it is another item or not **/
-    if (!(bookTitle.getText().equals(termChoice.getValue()))){
+    /** Check whether it is another item or not * */
+    if (!(bookTitle.getText().equals(termChoice.getValue()))) {
       bookTitle.setText((String) termChoice.getValue());
       showWebsite(webAction);
     }
+  }
+/** Gives the Information about the Application **/
+  public void giveInfo(ActionEvent _actionEvent) {
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setHeaderText("Information");
+    alert.setContentText(
+        "Alle redaktionellen Inhalte stammen von den Internetseiten der Projekte Wikibooks und Wortschatz.\n"
+            + "Die von Wikibooks bezogenen Inhalte unterliegen seit dem 22. Juni 2009 unter der Lizenz CC-BY-SA 3.0\n"
+            + "Unported zur Verfügung. Eine deutschsprachige Dokumentation für Weiternutzer findet man in den\n"
+            + "Nutzungsbedingungen der Wikimedia Foundation. Für alle Inhalte von Wikibooks galt bis zum 22. Juni\n"
+            + "2009 standardmäßig die GNU FDL (GNU Free Documentation License, engl. für GNU-Lizenz für freie\n"
+            + "Dokumentation). Der Text der GNU FDL ist unter\n"
+            + "http://de.wikipedia.org/wiki/Wikipedia:GNU_Free_Documentation_License verfügbar.\n"
+            + "Die von Wortschatz (http://wortschatz.uni-leipzig.de/) bezogenen Inhalte sind urheberrechtlich geschützt.\n"
+            + "Sie werden hier für wissenschaftliche Zwecke eingesetzt und dürfen darüber hinaus in keiner Weise\n"
+            + "genutzt werden.\n"
+            + "Dieses Programm ist nur zur Nutzung durch den Programmierer selbst gedacht. Dieses Programm dient\n"
+            + "der Demonstration und dem Erlernen von Prinzipien der Programmierung mit Java. Eine Verwendung\n"
+            + "des Programms für andere Zwecke verletzt möglicherweise die Urheberrechte der Originalautoren der\n"
+            + "redaktionellen Inhalte und ist daher untersagt");
+    alert.showAndWait();
   }
 }
