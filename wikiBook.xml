@@ -3,7 +3,7 @@
     <sitename>Wikibooks</sitename>
     <dbname>dewikibooks</dbname>
     <base>https://de.wikibooks.org/wiki/Hauptseite</base>
-    <generator>MediaWiki 1.36.0-wmf.27</generator>
+    <generator>MediaWiki 1.38.0-wmf.18</generator>
     <case>first-letter</case>
     <namespaces>
       <namespace key="-2" case="first-letter">Medium</namespace>
@@ -34,4 +34,929 @@
       <namespace key="2303" case="case-sensitive">Gadget-Definition Diskussion</namespace>
     </namespaces>
   </siteinfo>
+  <page>
+    <title>Netzwerktechnik</title>
+    <ns>0</ns>
+    <id>6106</id>
+    <revision>
+      <id>979637</id>
+      <parentid>910037</parentid>
+      <timestamp>2021-11-24T11:53:29Z</timestamp>
+      <contributor>
+        <username>SweetWood</username>
+        <id>96721</id>
+      </contributor>
+      <minor/>
+      <comment>[[Wikicode]] optimiert; [[Wikilink]] eingefügt</comment>
+      <model>wikitext</model>
+      <format>text/x-wiki</format>
+      <text bytes="53534" xml:space="preserve">{{Regal|EDV|Elektrotechnik}}
+== Zusammenfassung des Projekts ==
+{{Vorlage:StatusBuch|2}} 
+* '''Buchpatenschaft / Ansprechperson:''' Bin interessiert: [[Benutzer:Biegemann|Wolfgang Biegemann]].
+* '''Sind Co-Autoren gegenwärtig erwünscht?''' Ja, sehr gerne.
+
+&lt;div style="float:right; margin-left:20px; margin-bottom:20px; font-size:0.9em;"&gt; __TOC__ &lt;/div&gt;
+== Grundbegriffe ==
+=== Computernetze ===
+Werden mehrere Computer so miteinander verbunden, dass sie Daten austauschen können, nennt man das ein Computernetz (engl.: Network). Die Computer sind dann „vernetzt“. Die Verbindung kann mit Kupferdraht, mit Glasfaserkabeln, über Funk oder auf anderem Weg realisiert werden. Die „Verteilerkästen“, an denen die Netzwerkkabel von den Computern sternförmig zusammenlaufen, nennt man Hub oder Switch. 
+
+Computernetze haben meist einen oder mehrere zentrale Computer, die man als Server bezeichnet. Das Wort „Server“ bedeutet „Diener“. Die Server verwalten die gemeinsamen Ressourcen (Speicherplatz, gemeinsame Drucker). Diejenigen Server, welche die Datenströme von einem Netz ins andere lenken, nennt man „Router“. Einen Computer, welcher die Dienste eines Servers in Anspruch nimmt, nennt man „Client“. Wenn Sie „eine Verbindung ins Internet aufbauen“, bildet Ihr PC zusammen mit dem Server des Providers (siehe {{w|Internetdienstanbieter}}) ein zeitweiliges Netz für die Dauer der Verbindung.
+
+Wenn man zwei oder mehrere Computernetze miteinander verbindet, entsteht ein sogenanntes „Intranet“. Beispiel: Große Konzerne haben in jeder Niederlassung ein Computernetz. Die Computernetze der Niederlassungen werden untereinander durch „Standleitungen“ (das sind dauerhaft gemietete Telekommunikationsleitungen) zum firmeneigenen Internet verbunden (das sogenannte Intranet). 
+
+Ein ganz bestimmter Dienst, der ursprünglich nur ein paar Computer in den USA verbunden hat, ist gewachsen und zum WWW, dem [[w:World Wide Web|World Wide Web]], geworden. Das WWW unterscheidet sich von anderen Netzen durch
+* weltweite Ausdehnung,
+* öffentlichen Zugang,
+* Verwendung der TCP/IP-Protokollfamilie.
+
+== Definition Netzwerk ==
+Als Netzwerk bezeichnet man ein System aus mehreren miteinander verbunden Computern, Terminals oder Peripheriegeräten. Das wesentliche an einem Netzwerk ist das Zusammenschalten und somit die gemeinsame Nutzung von Peripheriegeräten wie zum Beispiel einem Laserdrucker oder auch die gemeinsame Nutzung von Datenbeständen, zum Beispiel einer Firmendatenbank.
+
+== Unterschied Peer-to-Peer und Client-Server Architektur ==
+=== Peer-to-Peer ===
+P2P (Peer to Peer) bezeichnet ein Netzwerk, in dem alle Rechner direkt miteinander verbunden sind, z.&amp;#8239;B. über Hub, Switch, Nullmodem, Crossover usw. Alle PC besitzen die gleichen Rechte und sind im Prinzip sowohl Server als auch Client. Bei Netzwerkpartys werden P2P-Netze aufgebaut oder in kleineren Firmennetzen.
+
+Das heißt, 
+Vorteile:
+* gleiche Rechte für alle Benutzer
+* geringer Verwaltungsaufwand (jedoch nur bei überschaubarer Netzwerkgröße)
+
+Nachteile:
+* Rechtemissbrauch
+* unsicher (Zugriff auf andere Benutzer)
+* begrenzter Zugriff auf andere Clients (max. 10)
+* großer Verwaltungsaufwand (bei größeren Netzen)
+
+Ergänzung:
+Die Definition für P2P ist so nicht ganz korrekt. Ein P2P Netzwerk, ist ein Netzwerk, welches ausschließlich aus Direktverbindungen und Freigaben besteht. 
+Ein gutes Beispiel sind die ersten, privaten Netzwerke. Diese bestanden aus direkten Verbindungen zwischen Computern und Computern. Als Netzwerkkarten dienten dabei die parallele (LPT) oder serielle (COM) Schnittstelle. Drucker oder sonstige Peripheriegeräte wurden an einem Computer angeschlossen und über Freigaben für andere Nutzer, freigegeben. Beispiele wären dafür das Kirschbaumnetzwerk oder LANTASIC. 
+Im Laufe der technischen Entwicklungen, bekam der Begriff P2P neue und erweiterte Bedeutungen.
+In der Industrie wurden P2P Netzwerke bekannt, durch die Einführung von Tokenring-Systemen.
+Der wesentliche Unterschied zu heutigen Netzwerken bzw., der Begrifflichkeit P2P ist: Die Systeme waren direkt miteinander Verbunden und aufeinander Angewiesen. Sobald ein Computer abgeschaltet wurde, funktionierte das gesamte Netzwerk nicht mehr, im Gegensatz zu Heute, wo ein einzelner Serverausfall, in der Regel, keinerlei Bedeutung hat.
+
+=== Client-Server ===
+In einem Netzwerk mit einer Client-Server Architektur greifen alle Rechner (Clients) auf bestimmte, von Servern zur Verfügung gestellte Dienste zu. Wie zum Beispiel eine zentrale Netzwerkanmeldung. Im Gegensatz zu einem Peer-to-Peer-Netz, müssen so nur bestimmte Rechner (die Server) immer laufen und auf Client-Anfragen warten, um einen reibungslosen Betrieb zu gewährleisten. Jedoch ist der Nachteil bei dieser Architektur, dass sich zum Beispiel im Falle eines Ausfalls des Anmeldeservers alle von ihm abhängigen Clients nicht mehr am Netzwerk anmelden können!
+
+Andererseits trifft der gleiche Nachteil auch auf ein P2P-Netz zu: Wenn der PC ausfällt, der die benötigten Daten enthält (oder der Benutzer mal eben nach einer Installation neu startet), kann man auch nicht weiterarbeiten. Und wenn die benötigten Daten auf mehrere PC verteilt sind, ist störungsfreies Arbeiten nur möglich, wenn '''jeder''' PC eingeschaltet und funktionsfähig ist.
+
+Vorteile der Client/Server Architektur:
+* mehr als 10 PC und auch mehrere Server möglich
+* erhöhte Sicherheit - hierarchische Strukturierung der Rechte/Rollen
+* zentrale bzw. zentralisierte Verwaltung und Wartung
+* hohe Anzahl von Diensten über das Netzwerk verfügbar
+* zahlreiche Möglichkeiten, die Zuverlässigkeit zu erhöhen (Spiegelung, Backup-Server u.&amp;#8239;a.)
+
+Nachteile:
+* Komplexität
+* Installationskosten (im Betrieb dann geringer)
+* Wartung
+* Ausfallrisiko (beim Server)
+
+== Abgrenzung LAN, WLAN, PAN, WPAN, BAN, MAN, WAN, GAN ==
+
+=== LAN – Local Area Network ===
+Unter einem LAN versteht man ein Computernetzwerk innerhalb eines räumlich begrenzten Bereiches. LANs sind als feste Installation kabelgebunden und intern bei Firmen zu finden. Zunehmend werden sie auch in privaten Haushalten aufgebaut. Verwendet keine öffentlichen Leitungen.
+
+=== WLAN – Wireless Local Area Network ===
+WLAN bezeichnet eine kabellose Methode ein Netzwerk aufzubauen. Das kann zum Beispiel durch Bluetooth (oder HomeRF oder HiperLAN) erreicht werden. Im allgemeinen Sprachgebrauch steht WLAN für ein kabelloses, internes Funknetzwerk, dessen Netzwerkstandard IEEE 802.11 lautet. Die Daten werden im 2,4&amp;#8239;GHz bzw. 5&amp;#8239;GHz Frequenzband übertragen, was einer Wellenlänge von 12,5&amp;#8239;cm bzw. 6&amp;#8239;cm entspricht. Handelsübliche Endgeräte übertragen die Daten mit einer Reichweite von ca. 30–100 Meter. Diese Reichweite wird allerdings nur bei direkter Sichtverbindung auf dem freien Feld erreicht. Trifft das Signal auf ein Hindernis, z.&amp;#8239;B. auf eine Wand oder dem Fussboden, wird die Verbindung schwieriger. In diesem Fall kann der Anschluss einer externen Antenne auch bessere Ergebnisse liefern. Trotzdem sind Stahlbetonwände und Leichtbauwände, die auf Metallrahmen aufgeschraubt sind, voraussichtlich undurchdringlich. Auch der menschliche Körper kann die Verbindung unterbrechen. 
+
+Die Datenrate liegt zwischen 1&amp;#8239;Mbit/s und 54&amp;#8239;Mbit/s. Der Standard für die 541&amp;#8239;Mbit/s, IEEE 802.11n, wurde im Januar 2006 verabschiedet. 
+
+WLANs sollten unbedingt verschlüsselt sein, um ein Abhören des Netzwerkverkehrs zu vermeiden. WEP-Verschlüsselungen bieten allerdings nur unzureichenden Schutz, sind aber immer noch geringfügig besser, als alle Daten im Klartext zu übertragen. WPA-Verschlüsselung ist deutlich aufwändiger zu knacken. Den höchsten Schutz bietet derzeit die WPA2-Verschlüsselung. Keine der zur Zeit gängigen WLAN-Zugriffsmethoden bietet hundertprozentigen Schutz, daher ist die Verschlüsselung auf einer höheren Ebene z.&amp;#8239;B. in Form eines VPNs angeraten. &lt;!-- http://www.heise.de/security/meldung/Sicherheitsluecke-in-WPA2-entdeckt-1044869.html --&gt;
+
+=== PAN – Personal Area Network ===
+
+Personal Area Network bezeichnet ein Netzwerk, welches von Kleingeräten wie etwa Handys oder PDAs aufgebaut und abgebaut werden kann. Die Verbindung wird kabelgebunden über USB u.&amp;#8239;ä. aufgebaut. In der Regel ist die Reichweite sehr kurz, wodurch Personal Area Networks die kleinste Art von Netzwerk bilden.
+
+=== WPAN – Wireless Personal Area Network ===
+
+WPAN ist die kabellose Art des PAN. Die Verbindung wird hier durch Bluetooth oder Infrarot aufgebaut.
+
+=== BAN – Body Area Network ===
+
+Unter einem Ban versteht man ein Netzwerk von Sensoren und Aktoren am oder innerhalb des menschlichen Körpers.
+
+=== MAN – Metropolitan Area Network  ===	
+Bei der EDV-Abkürzung MAN handelt es sich um ein Hochgeschwindigkeitsnetz, dessen äußere Knoten bis zu 50&amp;#8239;Kilometer auseinander liegen dürfen um als MAN bezeichnet zu werden. Die Übertragungsgeschwindigkeit solcher Stadtbereichsnetze oder kurz MAN liegt bei ca. 200&amp;#8239;MBit/s. Dieses Netzwerk eignet sich neben der Übertragung von Datenbeständen ebenso für die Übertragung von Videokonferenzen. Die MAN-Netzwerke sind durch die Standards IEEE 802.6 ANSI X3T9.5 genormt. Als Basis für ein MAN dient die [[Bild:Wikipedia-logo.png |20px]] [[wikipedia:de:DQDB|DQDB]]-Technologie.
+
+=== WAN – Wide Area Network ===
+Bei der Abkürzung WAN handelt es sich um ein Netzwerk, in dem Computer und Peripheriegeräte über große Entfernungen verbunden sind. Typischerweise sind dabei verschiedene lokale Netzwerke, die sich an unterschiedlichen Orten oder sogar in unterschiedlichen Ländern befinden, über Telefonleitungen verbunden. Als Schnittstelle zwischen verschiedenen lokalen Netzwerken dienen Hardware-Komponenten wie Bridges, Router und Gateways, wobei Gateways Netze mit unterschiedlicher Netzwerkarchitektur miteinander verbinden. Die bekanntesten WAN sind UUCP, SMDS und das WWW. WANs mit besonders hoher Übertragungsgeschwindigkeit werden auch als Information Highways oder Datenautobahnen bezeichnet.
+
+=== GAN – Global Area Network ===	
+Bei der EDV-Abkürzung GAN handelt es sich um ein weltweites System von miteinander verbundenen Computern. In der Regel ein Netzwerk, das über Satellitenverbindungen zustandekommt.
+
+== Gründe für Netzwerke ==	
+Die Vorteile eines Netzwerkes sind zum Beispiel, dass es möglich ist, gemeinsam auf Ressourcen und Daten zuzugreifen, außerdem die Kommunikation untereinander und auch die zentrale Administration.
+
+Nachteile sind zum Beispiel dass sich Würmer usw. übers Netzwerk verbreiten können. Und wenn zum Beispiel der zentrale Anmeldeserver ausfallen sollte dann ist es im ganzen Netzwerk nicht mehr möglich sich anzumelden. Das gleiche gilt für einen Printserver, wenn dieser ausfällt, ist es nicht mehr möglich über den dazugehörigen Drucker zu drucken.
+
+== [[Netzwerktechnik: Topologien|Topologien]] ==
+{{w|Netztopologie}}
+
+== [[Netzwerktechnik: Übertragungsmedien|Übertragungsmedien]] ==
+
+* Kupferkabel (Koaxialkabel, Twisted Pair und andere z.&amp;#8239;B. {{w|Patchkabel}})
+* Glasfaserkabel
+* Funkwellen (kabellos, engl. wireless)
+
+== [[Netzwerktechnik: Kabel|Kabel]] ==
+'''Kupfer''' 
+* 2-adrig ungeschirmt
+* Stromleitungen ungeschirmt
+* Koaxial
+* paarweise verdrillte Kabel (TP = twisted pair) 
+** UTP   (Unshielded Twisted Pair)
+** STP   (Shielded Twisted Pair)
+** S/STP (Screened Shielded Twisted Pair)
+** S/UTP (Screened Unshielded Twisted Pair)
+** Kategorien (Leistungsfähigkeit Komponenten)
+** Linkklassen (Leistungsfähigkeit Netzwerk)
+
+''' Glasfaser'''
+*Glasfaser - gezogene Fäden aus gebranntem Quarzsand (Glas) oder POF - polymere optische Fasern (Kunststoff), werden meist unter dem Begriff Lichtwellenleiter (LWL) bzw. Lichtleitkabel (LLK) zusammengefasst und auch synonym verwendet. I.d.R. sind Glasfasern performanter als die auch häufig verwendeten POF.
+
+*ein oder mehradrige (gemeinsam oder separat gemantelte) Kabeltypen möglich (z.&amp;#8239;B. bei Backbone- oder Überseeverbindungen)
+*Single-Mode oder Multi-Mode Fasern, MM-Fasern bestehen aus mehreren parallel geführten Fasern in einem Mantel
+*Licht kann zusätzlich in mehreren verschiedenen Wellenlängen über ein und die selbe Faser übertragen werden, Kombination/Separation dann über Prismen an den Knoten
+
+* Vorteile
+** Sehr große Übertragungsraten möglich
+** Sehr große Pakete in kurzer Zeit übermitteln 
+** Fast ohne Einschränkungen der Reichweite gegenüber Kupferleitungen (Kupfer max. ca. 100&amp;nbsp;m)
+**Performance-Upgrades möglich durch bessere Transmitter/Receiver bzw. Transceiver z.&amp;#8239;B. 10&amp;#8239;Gbit auf 40&amp;#8239;Gbit, sofern es die verlegten LWL qualitativ unterstützen
+* Nachteile
+** Diffizilere Verlegung; Glasfaser darf nicht im 90° Winkel (Reflexion!) verlegt werden, was bspw. bei einem UTP Kabel möglich wäre, es müssen Bögen mit bestimmten Biegeradien eingehalten werden; Kabel müssen eine gewisse Mindestlänge aufweisen, damit die Lichtstärke die Komponenten nicht beschädigt.
+** Kostenintensiver gegenüber konventioneller Kupferinstallation
+** direkte Verbindung bzw. Verlängerung einzelner Fasern (Spleißen) sehr aufwendig bzw. fehleranfällig und nur mit speziellen Gerätschaften möglich, daher meist der Umweg über Spleißboxen, welche den Patchfeldern in der TP-Ethernet Verkabelung entsprechen und die Verbindung einzelner Fasern mit Buchsen, Steckern und einer weiteren Faser ermöglicht- was natürlich mit Signalverlusten verbunden ist und somit nach Möglichkeit vor allem im professionellen Bereich mit langen Wegstrecken vermieden werden sollte.
+* Da Glasfaser sehr teuer ist und das Verlegen mehr Vorsicht bedarf wird es hauptsächlich für weite Strecken und in Bereichen mit viel Datenverkehr (Primärbereich) verwendet.
+
+== Signalübertragung im Basisband ==
+
+Basisband ist ein Begriff aus der Nachrichtenübertragungstechnik. Bei einer Basisbandübertragung wird der gesamte verfügbare Frequenzbereich für ein einziges Nutzsignal verwendet, bei analoger Telefonie ist das der Bereich von 300 bis 3400&amp;#8239;Hz. Eine Mehrfachnutzung des Übertragungskanals findet nicht statt, obwohl sie möglich wäre.
+
+== Bandbreite ==
+Bandbreite bezeichnet den Abstand zweier Frequenzen, die einen bestimmten, kontinuierlich zusammenhängenden Frequenzbereich, ein Frequenzband bilden. Bandbreite B = f2 - f1. Das geometrische Mittel zwischen diesen Frequenzen (f1 für die untere Grenzfrequenz und f2 für die obere Grenzfrequenz) ist die Mittenfrequenz f0 die als geometrisches Mittel berechnet werden sollte.
+Breitbandanwendungen sind zum Beispiel die DSL Technik und Kabelfernsehen.
+
+Als visuelles Beispiel wird gerne eine Autobahn genommen. Die einzelnen Spuren stehen für die Bandbreite, während die Autos den Datenverkehr darstellen. Je mehr Spuren die Autobahn hat, desto mehr Autos können gleichzeitig fahren.
+Daraus lässt sich eine einfache Faustregel ableiten:
+Je größer die Bandbreite ist, desto mehr Daten können gleichzeitig fließen, was sich wiederum positiv auf die Übertragungsrate auswirkt. 
+Die Bandbreite wird meistens mit den Einheiten kbit/s (Kilobit/Sekunde) oder Mbit/s (Megabit/Sekunde) angegeben.
+1 Mbit/s = 1000 kbit/s
+
+== Strukturierte Verkabelung ==
+Die Strukturierte Verkabelung stellt einen einheitlichen Aufbauplan für Verkabelungen für unterschiedliche Dienste (Sprache oder Daten) dar. Eine Strukturierte Verkabelung ist Teil der technischen Infrastruktur einer Liegenschaft und wird in die Bereiche Primär-, Sekundär- und Tertiärbereich eingeteilt.
+
+[[Bild:Strukturierte_verkabelung.png]]
+
+=== Primärbereich (Standort) ===
+Der Primärbereich ist die Verkabelung der Gebäude eines Standortes untereinander und wird auch als Campusverkabelung bezeichnet. Der Primärbereich umfasst die Gebäudeverteiler und die Kabel zwischen den Gebäudeverteilern (Primärkabel) eines LAN. Im Primärbereich sind große Entfernungen, hohe Datenübertragungsraten sowie eine geringe Anzahl von Anschlusspunkten bestimmend. Hier ist die Glasfaser als Übertragungsmedium wegen ihrer geringen Dämpfung, großen Bandbreite (und damit Einsparung vieladriger Kupferkabel) und der elektromagnetischen Unempfindlichkeit besonders geeignet. Wenn man ein Kupferkabel verwendet, kann es zu einer Gefahr bei Gewitter werden. Dadurch sind die Gebäude nicht mehr galvanisch getrennt und im Falle eines Blitzeinschlages wird das Potential angehoben und es fließt ein sehr hoher Strom über das Kabel! Verwendete Kabelarten: Glasfaserkabel.
+
+=== Sekundärbereich (Gebäude) ===
+Der Sekundärbereich ist die vertikale Stockwerkverkabelung; die Verkabelung der Stockwerke eines Gebäudes untereinander und wird auch als Steigbereichverkabelung bezeichnet. Der Sekundärbereich umfasst die Stockwerkverteiler oder Etagenverteiler (Switches) und die Kabel die vom Gebäudeverteiler (Serverraum) zu den einzelnen Stockwerkverteilern (Sekundärkabel) führen. Verwendete Kabelarten (nach DIN): Twisted-Pair-Kabel, Glasfaserkabel.
+
+=== Tertiärbereich (Etage) ===
+Der Tertiärbereich ist die horizontale Stockwerkverkabelung; die Verkabelung innerhalb der Stockwerke eines Gebäudes und wird auch als Etagenverkabelung bezeichnet. Der Tertiärbereich umfasst die Kabel vom Stockwerkverteiler zu den Anschlussdosen (Tertiärkabel). Verwendete Kabelarten: Hauptsächlich Twisted-Pair-Kabel, bei Fibre to the Desk auch Glasfaserkabel.
+
+= Messtechnik =
+== Dämpfung ==
+Als Dämpfung bezeichnet man die Verringerung des Ausschlages einer Schwingung. Durch Energieverlust (Abgabe von Energie an die Umgebung, viskose Reibung, etc.) verebbt die Schwingung eines Systems, wenn ihr keine neue Energie zugeführt wird.
+
+== Nahnebensprechen (NEXT) und Fernnebensprechen (FEXT) ==
+'''Nebensprechen''' oder ''Übersprechen'' (englische Bezeichnung ''Crosstalk'', abgekürzt ''XT'') ist ein Begriff aus der Telefonie und bezeichnet ursprünglich den Effekt, dass man manchmal am Telefon ein anderes Gespräch leise mithören kann - daher der Name. Zugrunde liegt ein einfacher physikalischer Vorgang: ein Adernpaar stellt einen elektrischen Schwingkreis dar und kann daher sowohl als Sender als auch als Empfänger von elektrischen Feldern dienen. Wird nun ein elektrisches Signal, wie beispielsweise das Sprachsignal, über ein Adernpaar übertragen, das gemeinsam mit mehreren anderen Adernpaaren in einem Kabel geführt ist, so wird dieses Signal durch Induktion auf andere Adernpaare übertragen. Das derart eingestreute Signal interferiert dann mit den Signalen, die auf den anderen Adernpaaren übertragen werden.
+
+Bei Vollduplex-Datenübertragung unterscheidet man zwei Arten von Interferenz: Nahnebensprechen (near end crosstalk, NEXT) und Fernnebensprechen (far end crosstalk, FEXT). Das erste, NEXT, bezeichnet den Effekt auf ein anderes Signal, das in derselben Richtung übertragen wird wie das Originalsignal. Die stärkste Einstreuung findet dabei an dem Leitungsende statt, das direkt beim Sender des Originalsignals liegt, also am nahen Ende. Die zweite Art, FEXT, wird auf ein Signal eingestreut, das in der Gegenrichtung zum Originalsignal übertragen wird. FEXT ist wesentlich schwächer als NEXT, da es am fernen Ende eingestreut wird.
+
+== Basic Link ==
+Misst die Leitung, die Dosen und die Patchleitung zum Messgerät. Weil bei dieser Meßmethode die Länge der Meßleitungen in die kumulierte Längenangabe aller Messungen mit eingeht (z.&amp;#8239;B. bei jeder Messung 4&amp;#8239;m Meßleitung) und daher durchaus schon mal Längen von einem km (nicht wirklich vorhandener Leitungen) zusammenkommen können, wird diese Methode nicht mehr verwendet.
+
+[[Bild:Basic_link.jpg]]
+
+== Permanent Link ==
+Bezeichnet die Messstrecke zwischen den Dosen und der dazwischen liegenden Leitung. Also nur die fest verlegten und unveränderlichen Komponenten. Der Definitionsbereich endet an der Dose und lässt die Anschlussleitungen unberücksichtigt.
+
+
+[[Bild:Permanent_link.JPG]]
+
+Die roten Linien markieren das Ende der Messstrecke.
+
+== Channel Link ==
+Ist die Messstrecke zwischen Dose, Leitung und Patchpanel. Außerdem beinhaltet die Messung noch die Patchleitungen von der Dose zum Messgerät.
+
+
+[[Bild:Channel_link.JPG]]
+
+Die roten Linien markieren das Ende der Messstrecke.
+
+= Normen =
+== ISO ==
+International Organization for Standardization (ISO) ist die internationale Vereinigung der Standardisierungsgremien von 148 Ländern; die ISO erarbeitet internationale Normen (engl.: Standards) in allen technischen Bereichen (außer in Elektrik und Elektronik, für die die IEC zuständig ist), darunter technische (z.&amp;#8239;B. MP3 oder Telefonkarten), klassifikatorische (z.&amp;#8239;B. Ländercodes wie .de, .nl, .jp.) und Verfahrensstandards (z.&amp;#8239;B. Qualitätsmanagement nach ISO 9000). Das Deutsche Institut für Normung e.V. (DIN) ist seit 1951 Mitglied der ISO. Die USA sind durch ANSI bei ISO vertreten.
+
+== IEEE ==
+Das IEEE (Institute of Electrical and Electronics Engineers, meist als ai tripel ih gesprochen) ist ein weltweiter Berufsverband von Ingenieuren aus den Bereichen Elektrotechnik und Informatik. Es ist Veranstalter von Fachtagungen, Herausgeber diverser Fachzeitschriften und bildet Gremien für die Standardisierung von Technologien, Hardware und Software. Wissenschaftlichen Beiträgen in Zeitschriften oder zu Konferenzen des IEEE wird im Allgemeinen eine besonders hohe fachliche Güte unterstellt.
+
+Das IEEE ist mit mehr als 360.000 Mitgliedern in 175 Ländern (2005) der größte technische Berufsverband der Welt. Es zergliedert sich in zahlreiche sog. Societies die sich mit speziellen Gebieten der Elektro- und Informationstechnik auseinandersetzen und in ihrer Vielfalt das gesamte Spektrum der Elektro- und Informationstechnik abdecken.
+
+Das IEEE entstand am 1. Januar 1963 aus dem Zusammenschluss der beiden amerikanischen Ingenieursverbände American Institute of Electrical Engineers (AIEE) und Institute of Radio Engineers (IRE). Sein Logo zeigt stilisiert die Rechte-Hand-Regel des Elektromagnetismus innerhalb einer auf die Ecke gestellten Raute. Diese Raute symbolisiert den Drachen, mit dem Benjamin Franklin gezeigt hat, dass Blitze eine Form elektrischer Energie sind. Die Rechte-Hand-Regel wurde vom IRE übernommen, während der Drachen (die Raute) vom AIEE mitgebracht wurde. 
+
+=== Wichtige IEEE-Standards ===
+==== IEEE 802 (LAN/MAN) ====
+Das IEEE 802 ist ein Projekt des IEEE , welches sich seit Ende der 70er Jahre mit Standards im Bereich der lokalen Netze (LAN) beschäftigt. Das Projekt legt Netzwerkstandards auf den Schichten 1 und 2 des OSI-Schichtenmodells fest. Dabei wird die Sicherungsschicht in die Bereiche LLC (Logical Link Controll) und MAC (Media Access Control) unterteilt. Die Arbeitsgruppen des IEEE 802 geben aber auch Hinweise für eine sinnvolle Einbettung der Systeme in einen Gesamtzusammenhang (Netzwerkmanagement, Internetworking, ISO-Interaction).
+
+Innerhalb des 802-Projektes sind verschiedene Arbeitsgruppen gebildet worden, die sich nach Bedarf auch mit neuen Aspekten beschäftigen.
+
+{| border="1"
+|-----
+! Standard
+! Thema der Gruppe
+|-----
+| 802.1 || Internetworking
+|-----
+| [[w:IEEE 802|802.2]] || Logical Link Control (LLC)
+|-----
+| 802.3 || CSMA/CD - Systeme, Ethernet
+|-----
+| 802.4 || Token Bus Zugriffsverfahren
+|-----
+| 802.5 || Token Ring Zugriffsverfahren 
+|-----
+| 802.6 || Metropolitan Area Network (MAN) 
+|-----
+| 802.7 || Breitbandübertragungstechnologie 
+|-----
+| 802.8
+| Glasfaserübertragungstechnologie 
+|-----
+| 802.9
+| Integrierte Sprach- und Datendienste 
+|-----
+| 802.10 || Netzwerksicherheit 
+|-----
+| [[w:IEEE_802.11|802.11]] || Drahtlose Netze 
+|-----
+| 802.12
+| Demand Priority Verfahren / 100-Mbit/s Ethernet 
+|-----
+| 802.14 || Breitband Cable TV (CATV)
+|-----
+| 802.15
+| Wireless Personal Area Network (WPAN)
+|-----
+| 802.16 || Broadband Wireless Access (BWA)
+|-----
+| 802.17 || Resilient Packet Ring (RPR)
+|-----
+| 802.18
+| Radio Regulatory Technical Advisory Group (RRTAG)
+|-----
+| 802.19 || Coexistence TAG 
+|-----
+| 802.20 || Drahtlose Breitbandnetze 
+|}
+
+== ITU ==
+Die International Telecommunication Union (ITU, frz: Union internationale des télécommunications, UIT) mit Sitz in Genf ist die einzige Organisation, die sich offiziell und weltweit mit technischen Aspekten der Telekommunikation beschäftigt. Sie geht zurück auf den 1865 gegründeten Internationalen Telegraphenverein und ist damit die älteste internationale Organisation. Heute ist sie eine Teilorganisation der UNO mit derzeit 190 Mitgliedsländern. Ihre Ziele sind Abstimmung und Förderung der internationalen Zusammenarbeit im Nachrichtenwesen. In ihrem Rahmen arbeiten Staatsregierungen, Unternehmen des privaten Sektors, sowie weitere regionale und nationale Organisationen zusammen. Grundlage der ITU ist der Internationale Fernmeldevertrag, der Aufgaben, Rechte und Pflichten der ITU-Organe festlegt.
+
+Die Arbeitssprachen der ITU sind englisch, französisch und spanisch, und entsprechend hat diese internationale Sonderorganisation der Vereinten Nationen auch drei verschiedenen Namen, unter denen sie Dokumente veröffentlicht.
+
+Die übergeordneten Gremien der ITU, die Plenipotentiary Conference und die World Conference bearbeiten allgemeine Prinzipien und generelle Konventionen. Die Studiengruppen der ITU hingegen leisten die eigentliche Arbeit: Sie bearbeiten technische Fragestellungen, die sie in regelmäßigen Sitzungen diskutieren. Die Ergebnisse werden als Empfehlungen (Recommendations) veröffentlicht und haben allerdings den Charakter von Normen.
+
+== CCITT ==
+Das CCITT - Comité Consultatif International Téléphonique et Télégraphique ist die frühere Bezeichnung eines der technischen Komitees der ITU, des jetzigen ITU Telecommunication Standardization Sector (ITU-T), d.&amp;#8239;h. der Abteilung der ITU, die technische Normen, Standards, und Empfehlungen für alle Gebiete der Telekommunikation erarbeitet. ITU-T besteht seit dem 1. März 1993, die Ursprünge des CCITT gehen zurück auf das Jahr 1865.
+
+= [[Netzwerktechnik: Protokolle|Protokolle]] =
+
+Netzwerkprotokolle können grundsätzlich in Kommunikationsprotokoll (KP), Zugriffsprotokolle (ZP), Anmeldeprotokolle (AP), Hilfsprotokolle (HP) und Verschlüsselungsprotokolle (VP) unterteilt werden.
+
+
+1.	ARP
+
+        ARP = Adress Resolution Protokoll. Das ARP arbeitet ähnlich wie DNS. 
+        Der Unterschied liegt darin, dass ARP IP – Adressen in MAC Adressen 
+        umwandelt und auch umgekehrt.
+
+        Dazu benutzt das Protokoll eine dynamische Adressermittlungstabelle,
+        die auch ARP – Cache genannt wird.
+
+        ARP ist also ein Hilfsprotokoll.
+
+
+2.	ATM und ATMARP
+
+        ATM = Asynchronous Transfer Mode. Das ATM ist ein KP. Dabei handelt es
+        sich um ein verbindungsloses Protokoll, da KEINE Verbindung zwischen
+        einem Sender und Empfänger bestehen muss.
+
+        ATM benutzt andere Adressen als die üblichen IP Adressen.
+
+        ATMARP = Asynchronous Transfer Mode  - Adress Resolution Protokoll.
+
+        Das ATMARP arbeitet ähnlich wie das ARP mit dem Unterschied, dass die
+        dynamische Adressermittlungstabelle hier ATM – Adressen in IP Adressen
+        umwandelt und umgekehrt.
+
+
+3.	APIPA
+
+        APIPA = Automatic Private IP Adressierung. 
+
+        Wenn Ihr Rechner ein DHCP – Client ist und der DHCP Server NICHT verfügbar ist, 
+        wird bei einigen Betriebssystemen Ihrem Rechner mit APIPA automatisch eine 
+        IP – Adresse aus dem Bereich 169.254.nnn.nnn (Klasse B Netz) zugewiesen.
+
+        Damit wird verhindert, dass ein Client OHNE IP – Adresse im Netz vorhanden ist.
+
+        Allerdings hat dieses Verfahren den Nachteil, dass Ihr Rechner KEINE Teilnehmer 
+        in ihrem Netz mehr findet. Wenn diese anderen Workstations aber auch KEINEN DHCP 
+        Server finden, werden auch diese Workstations eine APIPA Adresse besitzen und 
+        sind damit wieder erreichbar. Allerdings werden APIPA-Adressen nicht geroutet.
+
+        Sollte auf Grund eines Netzwerkfehlers (z.&amp;nbsp;B. fehlendes Netzwerkkabel) der DHCP 
+        Server nicht gefunden werden, dann sind die anderen Netzwerkteilnehmer nicht mehr 
+        verfügbar.
+
+
+4.	BGP
+
+        BGP = Border Gateway Protocol. Das BGP ist ein Hilfsprotokoll.
+
+        Es wird zum Routing zwischen autonomen Systemen verwandt. Es benutzt zum Senden 
+        seiner Nachrichten, (Liste der autonomen Systeme) von Router zu Router, das TCP 
+        Protokoll.
+
+
+5.	BOOTP
+
+        BOOTP = BOOT Protocol. Dieses Protokoll ist ein Kommunikationsprotokoll. Es
+        dient im Rahmen von PXE (Preboot eXecution Environment) dazu die Anfragen
+        des Clients (zu diesem Zeitpunkt noch ohne IP Adresse) an den Server zu stellen.
+        Mit BOOTP werden einfache Netzwerkeinstellungen wie IP-Adresse, Subnetzmaske und 
+        Gateway übertragen, für komplexere Konfigurationen wird DHCP verwendet.
+
+
+6.	CHAP
+
+        CHAP = Challenge Handshake Authentification Protocol. CHAP ist ein Anmeldeprotokoll.
+ 
+        CHAP ist ein Protokoll, das innerhalb von PPP zur Authentifizierung verwendet wird. 
+        Um die bei PAP auftretenden Sicherheitsrisiken zu verringern wurde CHAP entwickelt. 
+        Dieses Verfahren wird als 3-Wege-Handshake bezeichnet.
+
+        Die Authentifizierung wird bei CHAP vom Host gesteuert. Hat sich der Client eingewählt 
+        wird er vom Host zur Authentifizierung aufgefordert. Der Host schickt an den Client 
+        einen zufälligen Wert (Challenge). 
+
+        Aus der Zufallszahl, Benutzername und Passwort wird ein MD5-Hashwert gebildet. Er 
+        wird an den Host übertragen (Response). 
+
+        Der Host bildet ebenfalls aus der Zufallszahl und dem vorliegenden Benutzernamen 
+        und Passwort einen Hashwert. Stimmen die gesendeten Benutzerdaten mit denen des 
+        Hosts überein, wird die Authentifizierung akzeptiert (Accept). 
+
+        Wenn nicht, wird sie abgelehnt (Reject). 
+
+        Wurde die Authentifizierung akzeptiert, werden während der Verbindung die Benutzerdaten 
+        periodisch geprüft (Re-Authentifizierung).
+
+        Wird die Verbindung abgehört bekommt der Lauscher nur den Hashwert, nicht Benutzernamen 
+        und Passwort. Aus dem Hashwert lassen sich die Benutzerdaten nur mit viel Aufwand oder 
+        dem Einsatz vorberechneter sog. Rainbowtables ermitteln.
+
+        Die mit CHAP ausgetauschten Benutzerdaten sind zum Beispiel durch eine Man-in-the-Middle-Attacke   
+        gefährdet. Dabei schaltet sich ein Angreifer zwischen Client und Host. Er gaukelt dem Client 
+        eine PAP- und dem Host eine CHAP-Authentifizierung vor. Bei PAP wird das Passwort im Klartext 
+        übertragen. 
+
+        CHAP ist im Regelfall das Verfahren, das bei der Anmeldung an den Internet-Zugang beim ISP 
+        per Modem oder ISDN-Adapter durchgeführt wird.
+
+
+7.	CSMA/CD
+
+        CSMA/CD = Carrier Sense Multiple Access / Collision Detection. CSMA/CD ist ein Zugriffsprotokoll.
+
+        CSMA ist die Abkürzung für Carrier Sense Multiple Access und ein Begriff aus dem Bereich der     
+        Telekommunikation und der Computernetzwerke. 
+
+        Es ist ein dezentrales Verfahren zum Erlangen des Zugriffsrechts (Arbitration) nach dem 
+        Konkurrenzverfahren auf Busleitungen wie z.&amp;nbsp;B. den Feldbus, oder auch auf einen Funkkanal. 
+        Carrier Sense steht für Überwachung des Trägerkanals und bedeutet, dass alle Teilnehmer 
+        den Status der Busleitung beobachten und ihre Nachrichten nur senden, wenn gerade kein 
+        anderer Teilnehmer sendet, der Kanal also frei ist. 
+
+        CSMA teilt sich wiederum in verschiedene Verfahren zur Behandlung oder Vermeidung einer 
+        Kollision auf dem Bus auf. Kollisionen können eintreten, wenn zwei oder mehr Teilnehmer 
+        gleichzeitig mit dem Senden beginnen. 
+
+        CSMA/CD erkennt Kollisionen und CSMA/CA versucht, die Konkurrenzsituation durch unter-
+        schiedliche Sendeverzögerungen zu vermeiden.
+
+
+8.	DHCP
+
+        DHCP = Dynamic Host Configuration Protocol. DHCP ist ein KP.
+
+        DHCP arbeitet mit einem DHCP Server und DHCP Clients. Der DHCP Server hat
+        eine feste IP Adresse und verwaltet einen Adresspool, aus dem er Clients auf Anforderung
+        eine Adresse und Optionen zusendet. Bei den Optionen handelt es sich um weitere Einstellungen
+        wie z.&amp;nbsp;B. Subnetzmaske, Gateway, Hostname, DNS- oder WINS-Serveradressen.
+
+        DHCP ist ein Weiterentwicklung des BOOTP – Protokolls.
+
+        
+9.	DNS
+
+        DNS = Domain Name Service  oder auch Domain Name Space ist ein KP.
+
+        DNS ist für die Auflösung von IP – Adressen in Rechnernamen und umgekehrt zuständig. Dafür 
+        braucht das System eine Datei namens "hosts" bzw. die Datei "lmhosts" (Lan Manager hosts, 
+        hauptsächlich bei  Windowssystemen mit NetBIOS ohne WINS benötigt). In dieser Datei stehen 
+        die bekannten IP Adressen und deren Namenszuordnung bzw. deren Kurznamen.
+
+        Für den Menschen ist einfacher sich Namen zu merken, während der Computer besser mit 
+        eindeutigen Nummern zurechtkommt.
+
+        Die Datei HOST kann von Hand editiert oder auch automatisch angepasst werden.
+        Das kann über die DHCP – Einstellungen eingestellt werden.
+
+Während Computer sich mit Nummern identifizieren, ist es für Menschen einfacherer sich Domainnamen zu merken. DNS bringt diese Adressierungen zusammen. Wenn ich also die Domain de.wikibooks.org in meinen Browser eingebe, möchte dieser lieber die IP-Adresse haben und diese dann anschreiben. Also meldet sich mein Browser bei seinem DNS-Server und fragt die Adresse "de.wikibooks.org." an. Nehmen wir mal an, mein DNS-Server kennt die Adresse nicht und meldet sich nun bei einem Root-Server. Dieser kennt nur die Top- oder First Level Domains und sagt daher: "Ich habe keine Ahnung welche IP-Adresse 'de.wikibooks.org.' hat, aber ich kenne .org, frage doch da nach."
+
+Der DNS-Server geht nun zum zuständigen Server für die Top Level Domain (TLD) .org, welcher aber nur die Sub- oder Second Level Domains kennt und bekommt die Antwort: "Ich weiß nur, wo Du wikibooks.org. findest. Frage doch mal da nach."
+
+Nun fragt der DNS-Server bei wikibooks.org nach und dieser hat die Third Level Domain und nennt die IP-Adresse dem DNS-Server: 91.198.174.192
+
+Diese IP-Adresse gibt der DNS-Server an den Browser zurück. Nun kann der Browser die Seite durch die IP-Adresse anfordern und damit die Seite für mich darstellen.
+
+Der DNS-Server speichert die IP-Adresse für zukünftige Anfragen.
+
+Zudem findet heutzutage eher eine günstigere Methode Anwendung, bei der der DNS-Server nur noch eine Stufe hochgeht und nicht mehr direkt den Root-Server ansteuert.
+
+
+10.	EAP
+
+        EAP = Extensible Authentification Protocol. EAP ist ein Anmeldeprotokoll.
+
+        EAP ist die Erweiterungdes Point to Point Protocol (PPP, Einwahl über ein Modem ins Netz. 
+
+        EAP erlaubt es, eine größere Vielfalt an Authentifizierungs-Protokollen zu nutzen und 
+        damit den unbefugten Zugriff weiter zu erschweren.
+
+
+11.	FTP
+
+        FTP = File Transfer Protocol
+
+        FTP ist ein Dateiübertragungsprotokoll und benutzt TCP zur Datenübertragung.
+
+        Es benutzt die Ports 20 (zur Kommando-, Kontroll- und Datenübertragung sowie
+        Port 21 zur Steuerung (Initiierung und Aufrechterhaltung) der jeweiligen Sitzung.
+
+        Mit FTP können Daten als Struktur, als Sätze oder als Seiten übertragen werden.
+
+        Die Übertragung von Strukturdaten erfolgt immer dann, wenn die Dateien keine 
+        innere Struktur (keine Datensätze) enthält und somit als eine sequentielle Folge 	
+        von Bytes angesehen wird.
+
+        Die Übertragung von Sätzen erfolgt immer dann, wenn die Datei aus Datensätzen
+        besteht.
+
+        Die Übertragung von Seiten bezieht sich auf Seiten, die im Cache zwischengespeichert 
+        sind (zum Beispiel Inhalte von Webseiten). 
+
+        Da der Cache die Daten in sogenannten Seiten (Pages) speichert, handelt es sich 	
+        um die Übertragung von Seiten.
+		
+        Zusätzlich unterscheidet man noch verschiedene Übertragungsmodi.
+
+        Im Modus STROM werden die Daten als ein Strom von Daten (Bytestrom) übertragen.
+
+        Im Modus BLOCK wird die Datei in Datenblöcke zerlegt (z.&amp;nbsp;B. 1 Block = 4K, 1 Block 
+        = 8K etc.) und diese als eine Serie von Datenblöcken übertragen.
+
+        Im Modus KOMPRIMIERT werden die Daten komprimiert übertragen. Dabei werden redundante 
+        Informationen (z.&amp;nbsp;B. 71 Leerzeichen werden als 71 Spaces codiert und damit wird eine 
+        ganze Menge Speicher gespart) auf das erforderliche Mindestmaß reduziert.
+
+        FTP unterstützt nur eine begrenzte Anzahl von Befehlen.
+
+        Außerdem ist FTP relativ unsicher, da die Daten unverschlüsselt übertragen werden.
+
+
+12.	HTTP und HTTPS
+
+        HTTP = HyperText Transport Protocol  ||  Secure HyperText Transport Protocol
+        HTTP ist das standardmäßige Protokoll, dass von den Webservern eingesetzt wird. Für 
+        sensible Bereiche (LOGINs, geschlossene Benutzergruppen, Homebanking etc.) wird HTTPS 
+        (das verschlüselte HTTP Protokoll) verwandt.
+
+        HTTP wertet in diesem Zusammenhang und unter Verwendung von DNS die übergebenen Adressen 
+        (URI, URL, URN) aus.
+
+                URI	= 	Unified Resource Identifier
+                URL	=	Unified Resource Locator
+                URN 	=	Unified Resource Names
+
+        HTTP funktioniert folgendermaßen : 
+        Der Client schickt eine Internetadresse an seinen zuständigen Server.
+
+        Nun wertet dieser per DNS - Server die Adresse aus. 
+
+        Kennt er die Adresse, so gibt er die entsprechende Anfrage an den zuständigen Server 
+        weiter. Dieser schickt die zugehörige Webseite an den anfragenden Server und dieser 
+        schickt sie weiter an den Client.
+
+        Kennt er die Adresse nicht, so gibt er sie an seinen übergeordneten Server weiter.
+        Dieser wertet nun seinerseits die Adresse aus.
+
+        URL	= www.test.beispiel.
+	
+        Der aktuelle Server ist der letzte Punkt.
+
+        Wenn dieser die Adresse nicht kennt, dann wird die Adresse an den Server 
+        Beispiel weitergegeben, der seinerseits die Anfrage prüft.
+
+        Dies bedeutet, dass WWW der Top Level (Hauptserver des Internets) ist.
+        Der nächste Server Test ist bereits der Top Level Domain untergeordnet.
+
+        Weitere Details würden dieses Dokument sprengen.
+
+
+13.	ICMP
+
+        ICMP = Internet Control Message Protocol
+        ICMP selbst ist ein Hilfsprotokoll. 
+
+        Sie haben sicherlich schon das ICMP Protokoll unbemerkt benutzt. 
+
+        In dem Moment, wo sie zur Netzwerkdiagnose PING benutzen, benutzen Sie
+        automatisch auch ICMP.
+	
+        Die Meldung von PING z.&amp;nbsp;B. „Destination Host unreachable“ ist eine ICMP
+        Meldung. ICMP wird also in der Regel zur Diagnose von Netzwerkproblemen genutzt.
+
+
+14.	IMAP
+
+        IMAP = Internet Mail Access Protocol
+        IMAP ist ein häufig zur Übertragung von Mails genutztes Internetprotokoll.
+			
+
+15.	IPX/SPX
+
+        IPX/SPX = Internet Protocol eXtension – Service Protocol eXtension
+        IPX/SPX wurde vor allem unter NOVELL Netware benutzt, da es ein sehr einfaches und
+        zum damaligen Zeitpunkt weitverbreitetes Protokoll ist wurde es früher häufig bei 
+        LAN-Spielen verwendet, viele Spiele für DOS oder Windows 95 benutzten es.
+
+        IPX arbeitet in der Vermittlungsschicht, die für das Routing verantwortlich ist.
+
+        SPX übernimmt die Fehlerprüfung auf der Transportschicht.
+
+			
+16.	L2TP
+
+        L2TP = Layer 2 Tunneling Protocol ist ein Hilfsprotokoll.
+        L2TP richtet auf einer bestehenden Verbindung einen Tunnel auf.  Es schirmt
+        bestimmte Verbindungsarten (IP-, Frame-Relay- bzw. ATM – Netz) mit einem
+        Tunnel ab.
+
+        Damit ermöglicht L2TP die Authentisierung von Remote Benutzern beim Aufbau 		
+        von VPN (Virtual Private Networks) mit RAS (Remote Access Service).
+
+
+17.	LDAP
+
+        LDAP = Leightweight Directory Access Protocol ist ein Zugriffsprotokoll.
+	
+        LDAP ist ein Protokoll mit dem Anfragen an einen Verzeichnisdienst gestellt werden können.
+        Windows benutzt LDAP um Anfragen ans Active Directory zu stellen.
+
+        Unter Linux ist OpenLDAP verbreitet.
+
+
+18.	NAS
+
+        NAS = Network Access Service bzw. Network Access Server
+        NAS ist ein Authentifizierungs- und Authentisierungsprotokoll.
+
+        Um eine RAS (Remote Access Service) – Lösung zu implementieren, muss ein NAS
+        installiert sein. 
+
+        Dieser Service übernimmt die Autorisierungs- und Authentifizierungsprüfungen.
+
+        Zusätzlich kann ein Logbuch erstellt werden, in dem die Accountinginformationen 
+        zu jedem Benutzer gespeichert werden.
+
+			
+19.	NetBEUI
+
+        NetBEUI = NetBIOS Extended User Interface
+        NetBEUI ist ein eigenes Microsoft Protokoll, das in Windows basierten Betriebs-
+        systemen eingesetzt wurde.
+
+        Dieses Protokoll wurde hauptsächlich bei WINDOWS 3.x eingesetzt und ist auf LANs 
+        beschränkt, da es kein Routing unterstützt.
+
+        Dieses Protokoll wird von den modernen Betriebssystemen lediglich aus Kompatibilitäts-
+        gründen noch unterstützt.
+
+
+20.	NetBIOS
+
+        NetBIOS = Network Basic Input Output System
+        Das NetBIOS wird hauptsächlich in LANs eingesetzt, die ältere Betriebssysteme (DOS,
+        WIN 3.x etc.) benutzen.
+
+        Auch dieses Protokoll ist bereits veraltet und wird von modernen Betriebssystemen 
+        ebenfalls nur aus Kompatibilitätsgründen unterstützt.
+
+
+21.	NDIS
+
+        NDIS = Network Driver Interface Specification
+        Microsoft Betriebssysteme (ab WINDOWS 2000) benutzen folgende Netzwerkarchitektur :
+	
+        Clients (Redirector)
+	
+           APIs	
+           Server
+           TDI
+
+        TCP/IP
+	
+           NetBEUI	
+           NWLink (IPX)	
+           AppleTalk
+           NDIS - Schicht
+
+        Netzwerkkartentreiber
+
+	
+        NDIS ist eine Schichtgrenzenschnittstelle. Unterhalb dieser Grenze liegen die 
+        Netzwerkkartentreiber.
+
+
+22.	OSPF und OSPFng
+
+        OSPF = Open Shortest Path First bzw. Open Shortest Path First new generation
+        OSPF (für IPv4) und OSPFng (für IPv6) sind zustandsorientierte Routing Proto-
+        kolle. Beim OSPF wird der Zustand von Verbindungen (Links) berücksichtigt. 
+        Es ist also eine Link-State Routing Protokoll. 
+
+        Die Routing Information wird beim OSPF direkt in die IP Pakete eingebettet ohne 
+        ein Transportprotokoll zu benutzen.
+
+        Beim OSPF muss jeder Router für sich selbst eine Routingtabelle erstellen.
+        Er muss zusätzlich die Routing Informationen jedes anderen Routers in seiner 	
+        Routing Interface Datenbank speichern.
+
+
+23.	PAP
+
+        PAP = Password Authentification Protocol
+        PAP ist ein Hilfsprotokoll, das von PPP zur Authentisierung benutzt wird.
+
+        PAP wird als Prefix VOR einer PPP Dateneinheit eingefügt. Dabei werden
+        zusätzlich zu den eigentlichen Nutzdaten folgende Informationen (Code, Identifier, 
+        Length) übertragen.
+
+        In CODE steht entweder
+                1	= 	Authentification Request		REQ
+                2	=	Authentification Acknowledgement	ACK
+                3	=	Authenttification Not Acknowledgement	NAK
+
+        Die Authentifizierung nach PAP erfolgt mit Hilfe der Angaben :
+        Benutzer ID (Identification) und Password (Kennwort).
+
+        Der Nachteil von PAP liegt darin, dass User-ID und Passwort im Klartext
+        übermittelt werden.
+
+
+24.	PLP
+
+        PLP = Packet Layer Protocol
+        In der Paketvermittlung nach X.25 wird in der Vermittlungsschicht das PLP benutzt. 
+        Es wird auch als X.25PLP bezeichnet.
+
+        Es ist für den Verbindungsaufbau und -abbau sowie für die Übertragung einer Verbindung 
+        verantwortlich.
+
+        Es können gleichzeitig mehrere virtuelle Verbindungen über eine physikalische Leitung 
+        abgewickelt werden.		
+
+
+25.	POP
+
+        POP = Post Office Protocol
+        Das POP – Protokoll (POP3 Protokoll) dient dazu, Mail – Postfächer abzufragen.
+
+        Es arbeitet ähnlich wie IMAP und ist zuständig für den Download der Emails zum 
+        lokalen PC des Postfachinhabers. 
+
+
+26.	PPP
+
+        PPP = Point to Point Protocol
+        Das PPP ist ein Kommunikationsprotokoll. Es wird für die Übermittlung von Datenpaketen 
+        von Protokollen der Netzwerkschicht (z.&amp;nbsp;B. IP) über physische und virtuelle Punkt zu 
+        Punkt Verbindungen verwendet.
+
+        Das PPP wird vor allem bei RAS eingesetzt.
+
+        Zum PPP gehören auch die Hilfsprotokolle PAP und CHAP.
+
+
+27.	PPTP
+
+        PPTP = Point to Point Tunneling Protocol
+        PPTP ist ebenfalls ein Hilfsprotokoll. 
+
+        Das Tunneling ist ein Konzept, bei dem man beliebige Datenpakete über ein Weitverkehrsnetz 
+        als reines Transitnetz transportiert. Dieses Konzept wird benutzt, um IP Datenpakete über 
+        Netze zu transportieren, in denen man ein anderes Protokoll benutzt.
+
+
+28.	RADIUS
+
+        RADIUS = Remote Authentification Dial In User Protocol
+        Die Daten zwischen RADIUS Server und RADIUS Client werden als RADIUS Pakete übertragen.
+
+        RADIUS benutzt dazu das verbindungslose Protokoll UDP.
+
+        RADIUS ist der Port 1813 zugeordnet, in älteren Installationen auch 1645.
+
+
+29.	RTP
+
+        RTP = Real-time Transport Protocol 
+        Das RTP ist ein Kommunikationsprotokoll.
+
+        Es dient der Übertragung von Audio- und Videodaten in Echtzeit in IP Netzen.
+
+        Beispiele für die Anwendung von RTP sind Videokonferenzen, Filme, die in Echtzeit 
+        ausgestrahlt werden (z.&amp;nbsp;B. Bilder von der Raumstation).		
+
+        Das RTP vergibt neben einer laufenden Nummerierung einen Zeitstempel an die Audio- 
+        und Videodatenpakete, um deren richtige Reihenfolge beim Empfänger zu gewährleisten.
+
+
+30.	RTCP
+
+        RTCP = Real Time Control Protocol
+        Das RTCP ist ein Hilfsprotokoll für RTP.
+
+        Für die Überwachung der QoS – Parameter (QoS = Quality of Service) sowie die 	
+        zusätzliche Steuerung zwischen Sender und Empfänger wird RTCP benutzt.
+
+
+31.	SLIP
+
+	SLIP = Serial Line Internet Protocol
+        Das SLIP ist ein Kommunikationsprotokoll.
+
+        Es wird benötigt, um IP Datenpakete über eine serielle Leitung zu übertragen.
+
+        Beispiele für SLIP sind Verbindungen über eine analoge oder digitale Telefonleitung 
+        (analoge Telefonie, ISDN, DSL).
+
+
+32.	SMTP
+
+        SMTP = Simple Mail Transport Protocol
+        Das SMTP ist ein Kommunikationsprotokoll, das zum Austausch von Email dient.
+
+        Es basiert auf der Grundlage einer verbindungsorientierten Rechner zu Rechner
+        Kommunikation mittels TCP.
+
+		
+33.	TCP
+
+        TCP = Transmission Control Protocol
+        Das TCP ist ein Kommunikationsprotokoll, das einen gesicherten, verbindungsorientierten
+        Vollduplex Datenstrom zwischen Sender und Empfänger ermöglicht.
+ 
+        TCP ist ein wesentlicher Bestandteil der TCP / IP Protokollfamilie.
+
+	
+34.	TCP/IP
+
+        TCP/IP = Transmission Control Protocol – Internet Protocol
+		
+        TCP/IP ist kein einzelnes Protokoll sondern eine gesamte Protokollfamilie.
+        Zu dieser Familie gehören eine ganze Menge anderer Protokolle.
+
+        FTP, NNTP, HTTP, HTTPS, SMTP, TELNET, DHCP, SNMP, NFS, LDAP etc.
+
+        Das TCP/IP ist heutzutage das Standardprotokoll für alle Arten von Netzwerken
+        (WAN, LAN, WLAN, MAN).
+
+
+35.	UDP
+
+        UDP = User Datagram Protocol
+        Das UDP ist ein Kommunikationsprotokoll, das über eine ungesicherte, verbindungslose 
+        Kommunikation zwischen Sender und Empfänger abgewickelt wird.
+
+        Durch UDP können Anwendungen selbständige Datenblöcke (Datagramme) senden und empfangen.
+
+        UDP ist eine wichtige Grundlage für folgende Protokolle :
+
+        TFTP, RPC, NFS, DNS, SNMP, BOOTP, LDAP etc.
+
+
+36.	VoIP
+
+        VoIP = Voice over IP
+        VoIP ist eine Kommunikationform, die recht neu ist und zur Übertragung von Sprache ein 
+        IP Netz (Internet Telefonie, Videokonferenzen) verwendet.
+
+        Wird VoIP innerhalb eines Firmen LANs benutzt, spricht man auch von Intranet-Telefonie, 
+        bei VoIP im Internet von Internet-Telefonie.
+
+        Für den Einsatz von VoIP, müssen neben der Protokollinstallation noch bestimmte Hardware-
+        komponenten (Mikrofon, Headset, Lautsprecher, WebCam) installiert sein.
+ 
+        Selbstverständlich muss der PC über ausreichende Kapazitäten an Arbeitsspeicher sowie 
+        über eine ausreichende Geschwindigkeit zur Kodierung und Dekodierung des Datenstroms verfügen.
+        Außerdem sollte auch die Netzwerkverbindung schnell genug sein um die anfallenden Datenmengen 
+        zu übertragen. 
+
+
+37.	WAP
+
+        WAP = Wireless Access Protocol
+        Das WAP ist ein verbindungsloses Kommunikationsprotokoll, das heutzutage bereits von 
+        verschiedenen Endgeräten benutzt wird.
+
+        Zum Einen wird WAP von Mobiltelefonen benutzt, um Internetinhalte (im Rahmen von UMTS) 
+        in beschränktem Umfang auf dem Handy darzustellen.
+
+        Zum Anderen wird WAP auch von mobilen Computern (Notebooks, PDAs) benutzt, um an so 
+        genannten WLAN Access Points kabellos ins Internet zu gehen.
+
+        Zum Dritten wird WAP auch innerhalb von Gebäuden benutzt, um die sonst notwendige 
+        Verkabelung zu vermeiden.
+
+        Allen Anwendungsgebieten gemeinsam ist das Problem der Datenübertragung.
+
+        Bei jeder Nutzung von WAP sollte, darauf geachtet werden, dass die Übertragung immer 
+        verschlüsselt erfolgen soll.
+
+        Bei einer unverschlüsselten Datenübertragung ist es für fremde Personen viel zu leicht 
+        in das kabellose Netzwerk einzudringen und so die übertragenden Daten mitzulesen, 
+        auf Kosten des Inhabers des Netzwerks zu surfen bzw. auf dessen PC zuzugreifen, Daten 
+        auszuspionieren oder zu veränderen bzw. zu löschen.
+
+  Diese Beschreibung von Netzwerkprotokollen erhebt KEINEN Anspruch auf Vollständigkeit. Es 
+  ist NUR eine kleine Auswahl der tatsächlich verfügbaren Protokolle.
+
+= [[Netzwerktechnik: OSI|OSI-Schichtenmodell]] =
+
+= Komponenten =
+
+[[Bild:Komponenten schichten zuordnung.jpg]]
+
+== Repeater ==
+Repeater arbeiten optisch oder elektronisch auf der Schicht 1 des OSI-Schichtenmodells. Sie dienen dazu, mehrere Netzsegmente zu verbinden bzw. um das Signal auf langen Übertragungswegen wieder aufzufrischen.
+
+Im Normalfall beeinflusst ein Repeater die auf der Leitung übertragenden Informationen nicht. Es gibt allerdings Ausnahmen, wie zum Beispiel die Repeater die die DTAG in ihrem Direktrufnetz verwendet um das Signal wieder mit dem Referenztakt zu synchronisieren.
+
+== HUB ==
+HUBs werden verwendet um Netzwerksegmente und/oder einzelne HUBs miteinander durch ein Ethernet zu verbinden. HUBs arbeiten genauso wie Repeater auf der Schicht 1 des OSI-Schichtenmodells. Das von einem Netzwerkteilnehmer kommende Datenpaket wird an alle anderen Teilnehmer weitergeleitet und beeinflusst die Datenmenge im Netz negativ, weil alle Teilnehmer die Pakete erhalten und diese prüfen müssen. Normalerweise wird nur ein Teilnehmer das Paket verwenden, alle anderen „werfen es weg“. Switches sind intelligenter, weil sie die Pakete nur an den Teilnehmer senden, der diese auch angefordert hat.
+
+== Switch ==
+Ein Switch (Switching HUB) dient genauso wie ein HUB dazu Netzwerksegmente und einzelne HUBs/Switches miteinander zu verbinden. Jedoch arbeitet es auf Schicht 2 des OSI-Schichtenmodells und wird deshalb auch „intelligentes HUB“ genannt. Er merkt sich die 48 Bit lange MAC-Adressen aller angeschlossenen PC und legt dazu eine SAT (Source Address Table) an. Die Daten dieser Tabelle ermöglichen es dem Switch, die Daten nur an den Anschluss weiterzuleiten, an dem der Adressat zu finden ist.
+
+== Bridge ==
+Eine Bridge arbeitet wie ein Switch auch auf der 2. OSI-Schicht.
+Ziel der Bridge ist es Kollisionen im Netzwerk zu verhindern. Sie verbindet mehrere Teilnetze miteinander und leitet nur diejenigen Pakete weiter, deren Ziel sich in einem anderen Teilnetz befindet.
+
+== Router ==
+Router arbeiten auf Schicht 3 des OSI-Schichtenmodells und sorgen dafür, dass die eintreffenden Daten den richtigen Weg finden. Router ermitteln den Weg mit Hilfe von Routingtabellen.
+
+Dafür werden Routingprotokolle wie z.&amp;#8239;B. {{W|Border Gateway Protocol|Border Gateway Protocol (BGP)}}, {{W|Open Shortest Path First|Open Shortest Path First (OSPF)}}, {{W|Interior Gateway Routing Protocol|Interior Gateway Routing Protocol (IGRP)}}, EIGRP und {{W|Routing Information Protocol|Routing Information Protocol (RIP)}} verwendet.
+
+Wobei zu beachten ist das EIGRP ein proprietäres Cisco-Protokoll ist und nur von Cisco-Routern unterstüzt wird.
+
+Router verbinden Netzwerke.
+
+Router lassen keine Broadcasts durch.
+
+== Gateway ==
+Gateways erlauben unter anderem Netzwerke, die auf vollkommen unterschiedlichen Protokollen basieren, miteinander zu kommunizieren. 
+Beispiele sind SMS to E-Mail, Fax to E-Mail und E-Mail to Sprache.
+
+= Quellen =
+* {{w|Topologie (Netzwerk)}}
+* {{w|Strukturierte Verkabelung}}
+* {{w|Twisted-Pair-Kabel}}
+* {{w|Glasfaserkabel}}
+* {{w|IPv4}} / [[w:IPv6|IPv6]]
+* [http://www.selflinux.org/selflinux/html/tcpip.html  SelfLinux: TCP/IP]
+
+[[Kategorie:Buch]]</text>
+      <sha1>euldlakg2twz5zkv5xpfxtuxmk631op</sha1>
+    </revision>
+  </page>
 </mediawiki>
